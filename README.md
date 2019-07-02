@@ -1,4 +1,4 @@
-# react-native-custom-form
+# REACT NATIVE CUSTOM FORM
 
 A React Native component which works like a Form Builder.
 
@@ -9,71 +9,139 @@ Uses **React Hooks** just to demonstrate this new fabulous feature of React.
 To dynamic build a form, simple declare an array of fields as shown below.
 Use same default properties from RN Components Library, sucha as **TextIput**, **Button**, **TouchableOpacity**.
 
-```javascript
+---
+
+### USAGE EXAMPLE
+
+<p align="center">
+  <img width="300"  src="images/formBlank.png">
+  <img width="300"   src="images/formFilled.png">
+</p>
+
+---
+
+```json
 [
   [
     {
-      name: "email",
-      label: "Email",
-      type: "text",
-      inputProps: {
-        autoCorrect: false,
-        autoCapitalize: "none",
-        keyboardType: "email-address"
+      "name": "firstName",
+      "label": "First Name",
+      "type": "input",
+      "inputProps": {
+        "autoCorrect": false
+      }
+    },
+    {
+      "name": "lastName",
+      "label": "Last Name",
+      "type": "input",
+      "inputProps": {
+        "autoCorrect": false
       }
     }
   ],
   [
     {
-      name: "password",
-      label: "Password",
-      type: "text",
-      inputProps: {
-        secureTextEntry: true
+      "name": "email",
+      "label": "Email",
+      "type": "input",
+      "inputProps": {
+        "autoCorrect": false,
+        "autoCapitalize": "none",
+        "keyboardType": "email-address"
       }
     }
   ],
   [
     {
-      label: "Sign Up",
-      type: "button"
+      "name": "subject",
+      "placeholder": "Pick a topic of your interest",
+      "pickerItems": [
+        {
+          "label": "React Native",
+          "value": 0
+        },
+        {
+          "label": "React Hooks",
+          "value": 1
+        },
+        {
+          "label": "React Navigation",
+          "value": 2
+        },
+        {
+          "label": "React News",
+          "value": 3
+        }
+      ],
+      "type": "picker"
+    }
+  ],
+  [
+    {
+      "name": "password",
+      "label": "Password",
+      "type": "input",
+      "inputProps": {
+        "secureTextEntry": true
+      }
+    }
+  ],
+  [
+    {
+      "name": "subscribe",
+      "label": "Subscribe me to weekly news from Tech world.",
+      "type": "boolean",
+      "defaultValue": true
+    }
+  ],
+  [
+    {
+      "name": "signUpButton",
+      "label": "Sign Up",
+      "type": "button"
+    }
+  ],
+  [
+    {
+      "name": "resetButton",
+      "label": "Reset",
+      "type": "button"
     }
   ]
-];
+]
 ```
 
-json file bellow will produce the following screen:
+---
 
-![Blank Form](/images/formBlank.png)
-![Filled Form](/images/formFilled.png)
+# BACKLOG
 
-# Dependencies
+- [ ] implement form validation with error messages
+- [ ] refactor to use styled components
+- [ ] Implement form validation
+- [ ] Implement other field types
+- [ ] Tests
+- [ ] Refactor components to use styled components syntax
 
-```
-native-base: ^2.12.1
-react-native-masked-text: ^1.12.3
-react-native-vector-icons: ^6.6.0
-styled-components: ^4.3.2
-```
+---
 
-# DOING
+## VERSION HISTORY
 
-- refactor to use styled components
-- implement form validation with error messages
+### 0.0.2
 
-# TO-DO
+- [ x ] Implement custom form picker
+- [ x ] Allows form to render any kind of React component
+- [ x ] Added react-native-maked-text to allows masked input texts
 
-- Implement form validation
-- Implement other field types
-- Tests
-- Refactor components to use styled components syntax
+---
 
-# Version History
+## CONTRIBUTING
 
-## 0.0.2
+Any kind o help is appreciated, so please let's grow the community together.
 
-- Implement custom form picker
-- Allows form to render any kind of React component
-- Added react-native-maked-text to allows masked input texts
+If you would like to contribute whith this project somehow, please read
+[CONTRIBUTING](CONTRIBUTING.md)
 
-#
+## License
+
+This project is licensed under the MIT License.
