@@ -20,96 +20,113 @@ Use same default properties from RN Components Library, sucha as **TextIput**, *
 
 ---
 
-```json
-[
+```javascript
+const fields = [
   [
     {
-      "name": "firstName",
-      "label": "First Name",
-      "type": "input",
-      "inputProps": {
-        "autoCorrect": false
+      name: "firstName",
+      label: "First Name",
+      type: "input",
+      inputProps: {
+        autoCorrect: false
       }
     },
     {
-      "name": "lastName",
-      "label": "Last Name",
-      "type": "input",
-      "inputProps": {
-        "autoCorrect": false
+      name: "lastName",
+      label: "Last Name",
+      type: "input",
+      inputProps: {
+        autoCorrect: false
       }
     }
   ],
   [
     {
-      "name": "email",
-      "label": "Email",
-      "type": "input",
-      "inputProps": {
-        "autoCorrect": false,
-        "autoCapitalize": "none",
-        "keyboardType": "email-address"
+      name: "email",
+      label: "Email",
+      type: "input",
+      inputProps: {
+        autoCorrect: false,
+        autoCapitalize: "none",
+        keyboardType: "email-address"
       }
     }
   ],
   [
     {
-      "name": "subject",
-      "placeholder": "Pick a topic of your interest",
-      "pickerItems": [
+      name: "subject",
+      placeholder: "Pick a topic of your interest",
+      pickerItems: [
         {
-          "label": "React Native",
-          "value": 0
+          label: "React Native",
+          value: 0
         },
         {
-          "label": "React Hooks",
-          "value": 1
+          label: "React Hooks",
+          value: 1
         },
         {
-          "label": "React Navigation",
-          "value": 2
+          label: "React Navigation",
+          value: 2
         },
         {
-          "label": "React News",
-          "value": 3
+          label: "React News",
+          value: 3
         }
       ],
-      "type": "picker"
+      type: "picker"
     }
   ],
   [
     {
-      "name": "password",
-      "label": "Password",
-      "type": "input",
-      "inputProps": {
-        "secureTextEntry": true
+      name: "password",
+      label: "Password",
+      type: "input",
+      inputProps: {
+        secureTextEntry: true
       }
     }
   ],
   [
     {
-      "name": "subscribe",
-      "label": "Subscribe me to weekly news from Tech world.",
-      "type": "boolean",
-      "defaultValue": true
+      name: "subscribe",
+      label: "Subscribe me to weekly news from Tech world.",
+      type: "boolean",
+      defaultValue: true
     }
   ],
   [
     {
-      "name": "signUpButton",
-      "label": "Sign Up",
-      "type": "button"
+      name: "signUpButton",
+      label: "Sign Up",
+      type: "button"
     }
   ],
   [
     {
-      "name": "resetButton",
-      "label": "Reset",
-      "type": "button"
+      name: "resetButton",
+      label: "Reset",
+      type: "button"
     }
   ]
-]
+];
+```
+
+```javascript
+const handleSubmit = fields => {
+  const { firstName, lastName, email, subject, password } = fields;
+
+  Alert.alert(
+    "Your info",
+    `First Name: ${firstName.value}\n Last Name: ${lastName.value}\n Email: ${
+      email.value
+    }\n Subject: ${subject.value} \n Password: ${password.value}`
+  );
+};
+```
+
+```JSX
+<CustomForm formFieldsRows={fields} handleSubmit={handleSubmit} />
 ```
 
 ---
