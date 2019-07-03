@@ -11,15 +11,17 @@ Use same default properties from RN Components Library, sucha as **TextIput**, *
 
 ---
 
-### USAGE EXAMPLE
+## Example
 
 <p align="center">
-  <img width="300"  src="images/formBlank.png">
-  <img width="300"   src="images/formFilled.png">
-  <img width="300"   src="images/formErrors.png">
+  <img width="250"  src="images/formBlank.png">
+  <img width="250"  src="images/formFilled.png">
+  <img width="250"  src="images/formErrors.png">
 </p>
 
 ---
+
+### 1. Defining Fields [See file definition here](/src/screens/SignUp/SignUpFields.js)
 
 ```javascript
 const fields = [
@@ -113,6 +115,41 @@ const fields = [
 ];
 ```
 
+### 2. Defining form validation rules by field [See file definition here](/src/screens/SignUp/SignUpFormValidationRules.js)
+
+```javascript
+const validate = ({ firstName, lastName, email, subject, password }) => {
+  const errors = {};
+
+  if (!firstName.value) {
+    errors.firstName = "First name is required";
+  }
+  if (!lastName.value) {
+    errors.lastName = "Last name is required";
+  }
+
+  if (!email.value) {
+    errors.email = "Email address is required";
+  } else if (!/\S+@\S+\.\S+/.test(email.value)) {
+    errors.email = "Email address is invalid";
+  }
+
+  if (!subject.value) {
+    errors.subject = "A subject of interest is required.";
+  }
+
+  if (!password.value) {
+    errors.password = "Password is required";
+  }
+
+  return errors;
+};
+
+export default validate;
+```
+
+### 3. Declaring callback to be executed after form submission/validation [See file definition here](/src/screens/SignUp/index.js)
+
 ```javascript
 const handleSubmit = fields => {
   const { firstName, lastName, email, subject, password } = fields;
@@ -126,8 +163,14 @@ const handleSubmit = fields => {
 };
 ```
 
+### 4. Using the component [See file definition here](/src/screens/SignUp/index.js)
+
 ```JSX
-<CustomForm formFieldsRows={fields} handleSubmit={handleSubmit} />
+<CustomForm
+  formFieldsRows={fields}
+  handleSubmit={handleSubmit}
+  validation={validationRules}
+/>
 ```
 
 ---
