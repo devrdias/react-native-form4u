@@ -1,22 +1,24 @@
-import { Container, Content, Text } from "native-base";
-import React from "react";
-import { Alert, SafeAreaView, StyleSheet } from "react-native";
-import CustomForm from "../../components/CustomForm";
-import formFields from "./SignUpFields";
-import validationRules from "./SignUpFormValidationRules";
+import { Container, Content, Text } from 'native-base';
+import React from 'react';
+import { Alert, SafeAreaView, StyleSheet } from 'react-native';
+import CustomForm from '../../components/CustomForm';
+import formFields from './SignUpFields';
+import validationRules from './SignUpFormValidationRules';
 
 const SignUp = () => {
   /**
    * Grab user's input data.
    */
-  const handleSubmit = state => {
-    const { firstName, lastName, email, subject, password } = state;
+  const handleSubmit = (state) => {
+    const {
+      firstName, lastName, email, subject, password,
+    } = state;
 
     Alert.alert(
-      "Your info",
+      'Your info',
       `First Name: ${firstName.value}\n Last Name: ${lastName.value}\n Email: ${
         email.value
-      }\n Subject: ${subject.value} \n Password: ${password.value}`
+      }\n Subject: ${subject.value} \n Password: ${password.value}`,
     );
   };
 
@@ -38,21 +40,21 @@ const SignUp = () => {
 
 const styles = StyleSheet.create({
   safeArea: {
-    flex: 1
+    flex: 1,
     // backgroundColor: '#3F4EA5'
   },
   container: {
     flex: 1,
-    justifyContent: "center",
-    padding: 10
+    justifyContent: 'center',
+    padding: 10,
     // backgroundColor: '#3F4EA5'
   },
   textStyle: {
     fontSize: 35,
-    textAlign: "center",
-    margin: 10
+    textAlign: 'center',
+    margin: 10,
     // color: '#FFF'
-  }
+  },
 });
 
 export default SignUp;

@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { MaskService } from "react-native-masked-text";
+import { useState, useEffect } from 'react';
+import { MaskService } from 'react-native-masked-text';
 
 const useCustomForm = (formFieldsRows, callback, validate) => {
   const formInitialState = getInitialFormState();
@@ -16,10 +16,8 @@ const useCustomForm = (formFieldsRows, callback, validate) => {
      * Check if all fields have been filled out.
      */
     // filter out fields which does not need to be checked if they are filled out
-    const skipFieldType = ["boolean", "button", "reactComponent"];
-    const filteredFields = formFields.filter(
-      ({ type }) => !skipFieldType.includes(type)
-    );
+    const skipFieldType = ['boolean', 'button', 'reactComponent'];
+    const filteredFields = formFields.filter(({ type }) => !skipFieldType.includes(type));
 
     // check if all remaining fields have been filled out
     const isFilled = filteredFields.every(field => !!fields[field.name].value);
@@ -28,9 +26,9 @@ const useCustomForm = (formFieldsRows, callback, validate) => {
     /**
      * Check if at least one field has been filled out.
      */
-    const isDirty = formFields.some(field => {
+    const isDirty = formFields.some((field) => {
       switch (field.type) {
-        case "boolean":
+        case 'boolean':
           // because Boolean fields will have a default value,
           // we need to check if the current value is not the default one
           return fields[field.name] !== getFormFieldDefaultValue(field);
@@ -62,10 +60,10 @@ const useCustomForm = (formFieldsRows, callback, validate) => {
     }
 
     switch (type) {
-      case "boolean":
+      case 'boolean':
         return false;
       default:
-        return "";
+        return '';
     }
   }
 
@@ -106,7 +104,7 @@ const useCustomForm = (formFieldsRows, callback, validate) => {
   /**
    * Handle callback onChangeValue from inputs and other components
    */
-  const handleOnChangeValue = fieldName => text => {
+  const handleOnChangeValue = fieldName => (text) => {
     // check if field needs to be masked
     const formFields = getFormFields();
     const toMask = formFields
@@ -114,9 +112,9 @@ const useCustomForm = (formFieldsRows, callback, validate) => {
       .reduce(
         (obj, item) => ({
           maskType: item.maskType,
-          maskOptions: item.maskOptions
+          maskOptions: item.maskOptions,
         }),
-        {}
+        {},
       );
 
     const masked = toMask.maskType
@@ -140,7 +138,7 @@ const useCustomForm = (formFieldsRows, callback, validate) => {
     resetForm,
     handleOnChangeValue,
     isValidFormData,
-    isDirtyFormData
+    isDirtyFormData,
   };
 };
 

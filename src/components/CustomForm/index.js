@@ -1,21 +1,18 @@
-import { Form, View } from "native-base";
-import PropTypes from "prop-types";
-import React from "react";
-import { ActivityIndicator, Keyboard, StyleSheet } from "react-native";
-import FormBooleanInput from "./FormItems/FormBooleanInput";
-import FormButton from "./FormItems/FormButton";
-import FormPicker from "./FormItems/FormPicker";
-import FormTextInput from "./FormItems/FormTextInput";
-import useCustomForm from "./hooks/useCustomForm";
+import { Form, View } from 'native-base';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { ActivityIndicator, Keyboard, StyleSheet } from 'react-native';
+import CustomSwitch from './FormItems/CustomSwitch';
+import CustomButton from './FormItems/CustomButton';
+import CustomPicker from './FormItems/CustomPicker';
+import CustomTextInput from './FormItems/CustomTextInput';
+import useCustomForm from './hooks/useCustomForm';
 
 /**
  * A component which renders a form based on a given list of fields.
  */
 const CustomForm = ({
-  formFieldsRows,
-  handleSubmit,
-  validation,
-  customFormStyle
+  formFieldsRows, handleSubmit, validation, customFormStyle,
 }) => {
   const {
     fields,
@@ -25,7 +22,7 @@ const CustomForm = ({
     handleOnSubmitForm,
     resetForm,
     isValidFormData,
-    isDirtyFormData
+    isDirtyFormData,
   } = useCustomForm(formFieldsRows, handleSubmit, validation);
 
   /**
@@ -38,10 +35,10 @@ const CustomForm = ({
 
   const renderTextInput = ({ name, label, inputProps }) => {
     const hasError = !!errors[name];
-    const errorMessage = hasError ? errors[name] : " ";
+    const errorMessage = hasError ? errors[name] : ' ';
 
     return (
-      <FormTextInput
+      <CustomTextInput
         {...inputProps}
         value={fields[name].value.toString()}
         onChangeText={handleOnChangeValue(name)}
@@ -54,7 +51,7 @@ const CustomForm = ({
   };
 
   const renderBooleanInput = ({ name, label, inputProps }) => (
-    <FormBooleanInput
+    <CustomSwitch
       {...inputProps}
       value={fields[name].value}
       onValueChange={handleOnChangeValue(name)}
@@ -64,75 +61,65 @@ const CustomForm = ({
   );
 
   const renderButton = ({ label, buttonProps }) => {
-    const disabled =
-      buttonProps && buttonProps.preventSubmitOnDirty
-        ? !isValidFormData
-        : false;
+    const disabled = buttonProps && buttonProps.preventSubmitOnDirty ? !isValidFormData : false;
 
-    return label.toUpperCase().includes("RESET") ? (
-      <FormButton
-        {...buttonProps}
-        onPress={handleOnClickReset}
-        disabled={disabled}
-        key={label}
-      >
+    return label.toUpperCase().includes('RESET') ? (
+      <CustomButton {...buttonProps} onPress={handleOnClickReset} disabled={disabled} key={label}>
         {label}
-      </FormButton>
+      </CustomButton>
     ) : (
-      <FormButton
-        {...buttonProps}
-        onPress={handleOnSubmitForm}
-        disabled={disabled}
-        key={label}
-      >
+      <CustomButton {...buttonProps} onPress={handleOnSubmitForm} disabled={disabled} key={label}>
         {label}
-      </FormButton>
+      </CustomButton>
     );
   };
 
-  const renderReactComponent = ({ children, customStyle }) =>
-    children ? (
-      <View
-        style={[
-          { flex: 1, flexDirection: "row", justifyContent: "flex-end" },
-          { ...customStyle }
-        ]}
-        key={children.key}
-      >
-        {children}
-      </View>
-    ) : (
-      <View />
-    );
+  const renderReactComponent = ({ children, customStyle }) => (children ? (
+    <View
+      style={[{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }, { ...customStyle }]}
+      key={children.key}
+    >
+      {children}
+    </View>
+  ) : (
+    <View />
+  ));
 
-  const renderPicker = ({ name, placeholder, pickerItems, pickerProps }) => (
-    <FormPicker
-      key={name}
-      selectedValue={fields[name].value}
-      pickerItems={pickerItems}
-      placeholder={placeholder}
-      onValueChange={handleOnChangeValue(name)}
-      {...pickerProps}
-    />
-  );
+  const renderPicker = ({
+    name, placeholder, pickerItems, pickerProps,
+  }) => {
+    const hasError = !!errors[name];
+    const errorMessage = hasError ? errors[name] : ' ';
 
-  const renderLoading = () => {
     return (
-      <View
-        style={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          top: 0,
-          bottom: 0,
-          alignItems: "center",
-          justifyContent: "center"
-        }}
-      >
-        <ActivityIndicator size="large" color="#482fff" />
-      </View>
+      <CustomPicker
+        key={name}
+        selectedValue={fields[name].value}
+        pickerItems={pickerItems}
+        placeholder={placeholder}
+        onValueChange={handleOnChangeValue(name)}
+        error={hasError}
+        errorMessage={errorMessage}
+        {...pickerProps}
+      />
     );
   };
+
+  const renderLoading = () => (
+    <View
+      style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <ActivityIndicator size="large" color="#482fff" />
+    </View>
+  );
 
   return (
     <>
@@ -141,30 +128,30 @@ const CustomForm = ({
         autoFocus={false}
         style={[
           {
-            flex: 1
+            flex: 1,
             // justifyContent: 'space-between',
             // backgroundColor: 'green',
           },
-          { ...customFormStyle }
+          { ...customFormStyle },
         ]}
       >
         {formFieldsRows.map((formFieldsRow, i) => (
           <View style={styles.row} key={`f-${i}`}>
-            {formFieldsRow.map(field => {
+            {formFieldsRow.map((field) => {
               switch (field.type) {
-                case "boolean":
+                case 'boolean':
                   return renderBooleanInput(field);
 
-                case "button":
+                case 'button':
                   return renderButton(field);
 
-                case "reactComponent":
+                case 'reactComponent':
                   return renderReactComponent(field);
 
-                case "input":
+                case 'input':
                   return renderTextInput(field);
 
-                case "picker":
+                case 'picker':
                   return renderPicker(field);
 
                 default:
@@ -185,33 +172,28 @@ CustomForm.propTypes = {
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         label: PropTypes.string,
-        type: PropTypes.oneOf([
-          "boolean",
-          "button",
-          "reactComponent",
-          "input",
-          "picker"
-        ]).isRequired,
+        type: PropTypes.oneOf(['boolean', 'button', 'reactComponent', 'input', 'picker'])
+          .isRequired,
         inputProps: PropTypes.object,
         defaultValue: PropTypes.any,
         customStyle: PropTypes.object,
         maskType: PropTypes.oneOf([
-          "credit-card",
-          "cpf",
-          "cnpj",
-          "zip-code",
-          "only-numbers",
-          "money",
-          "cel-phone",
-          "datetime",
-          "custom"
+          'credit-card',
+          'cpf',
+          'cnpj',
+          'zip-code',
+          'only-numbers',
+          'money',
+          'cel-phone',
+          'datetime',
+          'custom',
         ]),
         maskOptions: PropTypes.object,
-        buttonProps: PropTypes.object
-      })
-    )
+        buttonProps: PropTypes.object,
+      }),
+    ),
   ).isRequired,
-  customFormStyle: PropTypes.object
+  customFormStyle: PropTypes.object,
 };
 
 CustomForm.defaultProps = {
@@ -219,18 +201,18 @@ CustomForm.defaultProps = {
     [
       {
         buttonProps: {
-          preventSubmitOnDirty: true
-        }
-      }
-    ]
-  ]
+          preventSubmitOnDirty: true,
+        },
+      },
+    ],
+  ],
 };
 
 const styles = StyleSheet.create({
   row: {
-    flexDirection: "row",
-    paddingBottom: 15
-  }
+    flexDirection: 'row',
+    paddingBottom: 15,
+  },
 });
 
 export default CustomForm;
