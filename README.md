@@ -16,6 +16,7 @@ Use same default properties from RN Components Library, sucha as **TextIput**, *
 <p align="center">
   <img width="300"  src="images/formBlank.png">
   <img width="300"   src="images/formFilled.png">
+  <img width="300"   src="images/formErrors.png">
 </p>
 
 ---
@@ -133,16 +134,17 @@ const handleSubmit = fields => {
 
 # BACKLOG
 
-- [ ] implement form validation with error messages
 - [ ] refactor to use styled components
-- [ ] Implement form validation
 - [ ] Implement other field types
 - [ ] Tests
-- [ ] Refactor components to use styled components syntax
 
 ---
 
 ## VERSION HISTORY
+
+### 0.0.3
+
+- [ x ] implement form validation with error messages
 
 ### 0.0.2
 
