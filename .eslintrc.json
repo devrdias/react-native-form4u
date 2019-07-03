@@ -1,14 +1,14 @@
 {
+  "parser": "babel-eslint",
   "env": {
-    "browser": true,
     "es6": true,
-    "node": true,
-    "react-native/react-native": true
+    "jest": true
   },
-  "extends": ["airbnb"],
+  "extends": ["airbnb", "plugin:react-native/all"],
   "globals": {
     "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
+    "SharedArrayBuffer": "readonly",
+    "__DEV__": true
   },
   "parserOptions": {
     "ecmaFeatures": {
@@ -17,11 +17,23 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["react", "react-native"],
+  "plugins": ["react", "react-native", "jsx-a11y", "import"],
   "rules": {
-    "no-use-before-define": "off",
-    "react/jsx-filename-extension": "off",
-    "react/prop-types": "off",
-    "comma-dangle": "off"
+    "react/jsx-filename-extension": [
+      "error",
+      { "extensions": [".js", ".jsx"] }
+    ],
+    "import/prefer-default-export": "off",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "react/jsx-one-expression-per-line": "off",
+    "react-native/no-color-literals": "off",
+    "react-native/sort-styles": "off",
+    "global-require": "off",
+    "react-native/no-raw-text": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-plugin-root-import": { "rootPathSuffix": "src" }
+    }
   }
 }

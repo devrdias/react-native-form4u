@@ -1,10 +1,10 @@
-import { Item, Picker } from 'native-base';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Dimensions } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { Item, Picker } from "native-base";
+import PropTypes from "prop-types";
+import React from "react";
+import { Dimensions } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
 
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get("window").width;
 
 const FormPicker = ({ placeholder, pickerItems = [], ...pickerProps }) => (
   <Item picker>
@@ -16,12 +16,12 @@ const FormPicker = ({ placeholder, pickerItems = [], ...pickerProps }) => (
       iosIcon={<Icon size={20} color="#bfc6ea" name="ios-arrow-dropdown" />}
       style={{ width: undefined }} // fix for widht with native-base 2.12.1
       // style={{ width: "90%" }}
-      placeholderStyle={{ color: '#bfc6ea', maxWidth: '100%' }}
-      textStyle={{ maxWidth: '100%' }}
+      placeholderStyle={{ color: "#bfc6ea", maxWidth: "100%" }}
+      textStyle={{ maxWidth: "100%" }}
       {...pickerProps}
     >
       {pickerItems.map((item, i) => (
-        <Picker.Item key={i} label={item.label} value={item.value} />
+        <Picker.Item key={i} label={item.label} value={item.value.toString()} />
       ))}
     </Picker>
   </Item>
@@ -47,9 +47,9 @@ FormPicker.propTypes = {
 };
 
 FormPicker.defaultProps = {
-  iosHeader: ' ',
+  iosHeader: " ",
   pickerItems: [],
-  headerBackButtonText: 'Voltar'
+  headerBackButtonText: "Voltar"
 };
 
 export default FormPicker;

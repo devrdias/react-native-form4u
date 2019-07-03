@@ -1,7 +1,7 @@
-import { Container, Content } from 'native-base';
-import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
-import SignUp from './src/components/SignUp';
+import { Container, Content } from "native-base";
+import React from "react";
+import { SafeAreaView, StyleSheet } from "react-native";
+import SignUp from "./src/screens/SignUp";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     paddingHorizontal: 10
     // backgroundColor: '#3F4EA5'
   },
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
   screenTitle: {
     fontSize: 35,
-    textAlign: 'center',
+    textAlign: "center",
     margin: 10
     // color: '#FFF'
   }

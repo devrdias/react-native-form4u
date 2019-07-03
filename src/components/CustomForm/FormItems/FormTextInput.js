@@ -1,34 +1,42 @@
-import {
-  Input, Item, Label, View
-} from 'native-base';
-import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { Input, Item, Label, View, Text } from "native-base";
+import PropTypes from "prop-types";
+import React, { useRef, useState } from "react";
+import { StyleSheet } from "react-native";
+import Icon from "react-native-vector-icons/AntDesign";
 /**
  * A stateless function component which renders a TextInput.
  *
  * @param {obj} props
  */
 const FormTextInput = ({
-  labelText, multiline, floatingLabel, ...inputProps
+  labelText,
+  multiline,
+  floatingLabel,
+  error,
+  errorMessage,
+  ...inputProps
 }) => {
-  const [borderColor, setBorderColor] = useState('#78909C');
+  const [borderColor, setBorderColor] = useState("#78909C");
   const [borderWidth, setBorderWidth] = useState(2);
   const inputEl = useRef(null);
 
   const onFocus = () => {
-    setBorderColor('#0E80DA');
+    setBorderColor("#0E80DA");
     setBorderWidth(2);
   };
 
   const onBlur = () => {
-    setBorderColor('#78909C');
+    setBorderColor("#78909C");
     setBorderWidth(1);
   };
 
   return (
     <View style={styles.inputWrapper}>
-      <Item floatingLabel={floatingLabel} style={{ borderColor, borderWidth }}>
+      <Item
+        floatingLabel={floatingLabel}
+        style={{ borderColor: error ? "red" : borderColor, borderWidth }}
+        error={error}
+      >
         {labelText && <Label style={styles.label}>{labelText}</Label>}
         <Input
           ref={inputEl}
@@ -40,12 +48,13 @@ const FormTextInput = ({
           onFocus={onFocus}
           {...inputProps}
         />
+        {error && <Icon type="AntDesign" name="close" />}
       </Item>
-
-      {/* {errors.email && <Icon type="AntDesign" name="close" />} */}
-      {/* <View> */}
-      {/* {errors.email && <Text style={{ color: 'red', fontSize: 12 }}>{errors.email}</Text>} */}
-      {/* </View> */}
+      <View>
+        {error && (
+          <Text style={{ color: "red", fontSize: 12 }}>{errorMessage}</Text>
+        )}
+      </View>
     </View>
   );
 };
@@ -79,16 +88,15 @@ FormTextInput.defaultProps = {
 
 const styles = StyleSheet.create({
   inputWrapper: {
-    flex: 1
+    flex: 1,
+    padding: 4
   },
   textInput: {
     fontSize: 15
-    // fontFamily: "OpenSans-SemiBold"
   },
   label: {
     fontSize: 16,
     paddingTop: 2
-    // fontFamily: "OpenSans"
   },
   textarea: {
     height: 80
