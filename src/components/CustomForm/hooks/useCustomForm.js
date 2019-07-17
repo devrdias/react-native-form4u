@@ -97,7 +97,7 @@ const useCustomForm = (formFieldsRows, callback, validate) => {
    * Reset Form to its initial state
    */
   const resetForm = () => {
-    setErrors();
+    setErrors({});
     setFields(formInitialState);
   };
 
