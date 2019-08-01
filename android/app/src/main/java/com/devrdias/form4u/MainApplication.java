@@ -1,4 +1,4 @@
-package com.rncustomform;
+package com.devrdias.form4u;
 
 import android.app.Application;
 

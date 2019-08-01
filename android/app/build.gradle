@@ -102,7 +102,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.rncustomform"
+        applicationId "com.devrdias.form4u"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

@@ -14,11 +14,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React Native!"
 
-@interface RNCustomFormTests : XCTestCase
+@interface Form4uTests : XCTestCase
 
 @end
 
-@implementation RNCustomFormTests
+@implementation Form4uTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {

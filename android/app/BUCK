@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.rncustomform",
+    package = "com.devrdias.form4u",
 )
 
 android_resource(
     name = "res",
-    package = "com.rncustomform",
+    package = "com.devrdias.form4u",
     res = "src/main/res",
 )
 
