@@ -6,9 +6,9 @@
 
 A React Native component which works like a Form Builder.
 
-I first started this project to help myself on personal projects and for learning purposes, but them it turned out that maybe it can help others to build apps using this simple, light and fast Form Builder.
+It's all configurable using Json properties.
 
-Uses **React Hooks** just to demonstrate this new fabulous feature of React.
+I first started this project to help myself on personal projects and for learning purposes, but them it turned out that maybe it can help others to build apps using this simple, light and fast Form Builder.
 
 To dynamic build a form, simple declare an array of fields as shown below.
 Use same default properties from RN Components Library, sucha as **TextIput**, **Button**, **TouchableOpacity**.
@@ -181,7 +181,8 @@ const handleSubmit = fields => {
 
 # BACKLOG
 
-- [ ] refactor to use styled components
+- [ x ] remove styled-component from Input from native-base, onChange and onChangeText were not been called
+- [ x ] refactor to use styled components
 - [ ] Implement other field types
 - [ ] Tests
 
