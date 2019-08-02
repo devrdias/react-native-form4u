@@ -1,5 +1,3 @@
-# FORM4U IS A REACT NATIVE FORM BUILDER
-
 <p align="center">
   <img width="450"  src="images/form4ulogo.png">
 </p>
