@@ -2,14 +2,13 @@
   <img width="450"  src="images/form4ulogo.png">
 </p>
 
-A React Native component which works like a Form Builder.
+A React Native form builder, simple, light and fast !
 
-It's all configurable using Json properties.
+1 - Define your json file with your [fields](/src/screens/SignUp/SignUpFields.js), can be any react-native field or valid component;
 
-I first started this project to help myself on personal projects and for learning purposes, but them it turned out that maybe it can help others to build apps using this simple, light and fast Form Builder.
+2 - Define [validation](/src/screens/SignUp/SignUpFormValidationRules.js) with the flexibility of using a JavaScript function to define your custom fields validation.
 
-To dynamic build a form, simple declare an array of fields as shown below.
-Use same default properties from RN Components Library, sucha as **TextIput**, **Button**, **TouchableOpacity**.
+Package comes with a full Sign Up login screen.
 
 ---
 
@@ -23,7 +22,7 @@ Use same default properties from RN Components Library, sucha as **TextIput**, *
 
 ---
 
-### 1. Defining Fields [See file definition here](/src/screens/SignUp/SignUpFields.js)
+### 1. [Defining Fields](/src/screens/SignUp/SignUpFields.js)
 
 ```javascript
 const fields = [
@@ -117,7 +116,7 @@ const fields = [
 ];
 ```
 
-### 2. Defining form validation rules by field [See file definition here](/src/screens/SignUp/SignUpFormValidationRules.js)
+### 2. [Defining form validation](/src/screens/SignUp/SignUpFormValidationRules.js) rules by field
 
 ```javascript
 const validate = ({ firstName, lastName, email, subject, password }) => {
@@ -150,7 +149,7 @@ const validate = ({ firstName, lastName, email, subject, password }) => {
 export default validate;
 ```
 
-### 3. Declaring callback to be executed after form submission/validation [See file definition here](/src/screens/SignUp/index.js)
+### 3. [Declaring callback](/src/screens/SignUp/index.js) to be executed after form submission/validation
 
 ```javascript
 const handleSubmit = fields => {
@@ -165,7 +164,7 @@ const handleSubmit = fields => {
 };
 ```
 
-### 4. Using the component [See file definition here](/src/screens/SignUp/index.js)
+### 4. [Using the component](/src/screens/SignUp/index.js)
 
 ```JSX
 <CustomForm
@@ -182,6 +181,7 @@ const handleSubmit = fields => {
 - [ x ] refactor to use styled components
 - [ ] Implement other field types
 - [ ] Tests
+- [ ] Documentation!!!
 
 ---
 
@@ -191,6 +191,7 @@ const handleSubmit = fields => {
 
 - [ x ] remove styled-component from Input from native-base, onChange and onChangeText were not been called
   [see more](https://github.com/GeekyAnts/NativeBase/issues/2692)
+- [ x ] fix errors view which was shrinking in few cases
 
 ### 0.0.3
 
