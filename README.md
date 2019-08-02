@@ -190,6 +190,7 @@ const handleSubmit = fields => {
 ### 0.0.4
 
 - [ x ] remove styled-component from Input from native-base, onChange and onChangeText were not been called
+  [see more](https://github.com/GeekyAnts/NativeBase/issues/2692)
 
 ### 0.0.3
 
