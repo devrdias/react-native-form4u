@@ -1,9 +1,10 @@
-import { Label } from 'native-base';
+import { Input, Label } from 'native-base';
 import PropTypes from 'prop-types';
 import React, { useRef, useState } from 'react';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { StyleSheet } from 'react-native';
 import {
-  Container, Error, ErrorMessage, StyledInput, StyledItem,
+  Container, Error, ErrorMessage, StyledItem,
 } from './styles';
 
 /**
@@ -42,8 +43,11 @@ const CustomTextInput = ({
         error={error}
       >
         <Label style={{ fontSize: 16 }}>{labelText}</Label>
-        <StyledInput
+        <Input
           ref={inputEl}
+          style={[styles.textInput, multiline && styles.textarea]}
+          blurOnSubmit
+          returnKeyType="next"
           multiline={multiline}
           onBlur={onBlur}
           onFocus={onFocus}
@@ -77,10 +81,19 @@ CustomTextInput.defaultProps = {
   multiline: false,
   inputProps: {},
   floatingLabel: true,
-  borderWidth: 1,
+  borderWidth: 0,
   borderColor: '#78909C',
   error: false,
   errorMessage: ' ',
 };
+
+const styles = StyleSheet.create({
+  textInput: {
+    fontSize: 15,
+  },
+  textarea: {
+    height: 80,
+  },
+});
 
 export default CustomTextInput;
