@@ -76,7 +76,8 @@ const CustomForm = ({
 
   const renderReactComponent = ({ children, customStyle }) => (children ? (
     <View
-      style={[{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }, { ...customStyle }]}
+        // style={[{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }, { ...customStyle }]}
+      style={styles.row}
       key={children.key}
     >
       {children}
@@ -106,17 +107,7 @@ const CustomForm = ({
   };
 
   const renderLoading = () => (
-    <View
-      style={{
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <View style={styles.loading}>
       <ActivityIndicator size="large" color="#482fff" />
     </View>
   );
@@ -124,17 +115,7 @@ const CustomForm = ({
   return (
     <>
       {isSubmitting && renderLoading()}
-      <Form
-        autoFocus={false}
-        style={[
-          {
-            flex: 1,
-            // justifyContent: 'space-between',
-            // backgroundColor: 'green',
-          },
-          { ...customFormStyle },
-        ]}
-      >
+      <Form autoFocus={false} style={{ ...customFormStyle }}>
         {formFieldsRows.map((formFieldsRow, i) => (
           <View style={styles.row} key={`f-${i}`}>
             {formFieldsRow.map((field) => {
@@ -194,24 +175,27 @@ CustomForm.propTypes = {
     ),
   ).isRequired,
   customFormStyle: PropTypes.object,
+  validation: PropTypes.func,
 };
 
 CustomForm.defaultProps = {
-  formFieldsRows: [
-    [
-      {
-        buttonProps: {
-          preventSubmitOnDirty: true,
-        },
-      },
-    ],
-  ],
+  customFormStyle: { flex: 1 },
+  validation: () => undefined,
 };
 
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     paddingBottom: 15,
+  },
+  loading: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

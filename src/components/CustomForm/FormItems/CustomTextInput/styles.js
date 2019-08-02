@@ -20,7 +20,7 @@ export const StyledItem = styled(Item).attrs()`
 `;
 
 export const Error = styled.View`
-  flex: 1;
+  flex: 0;
 `;
 
 export const ErrorMessage = styled.Text`

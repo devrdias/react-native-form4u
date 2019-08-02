@@ -53,14 +53,12 @@ const CustomTextInput = ({
           onFocus={onFocus}
           {...inputProps}
         />
-        {error && <Icon type="AntDesign" name="close" />}
+        {error && <Icon type="AntDesign" style={{ color: 'red' }} name="close" />}
       </StyledItem>
 
-      {error && (
-        <Error>
-          <ErrorMessage>{errorMessage}</ErrorMessage>
-        </Error>
-      )}
+      <Error>
+        <ErrorMessage>{errorMessage}</ErrorMessage>
+      </Error>
     </Container>
   );
 };

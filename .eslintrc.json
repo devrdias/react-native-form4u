@@ -30,7 +30,10 @@
     "react-native/sort-styles": "off",
     "global-require": "off",
     "react-native/no-raw-text": "off",
-    "react/forbid-prop-types": ["off", { "forbid": [] }]
+    "react/forbid-prop-types": ["off", { "forbid": [] }],
+    "no-use-before-define": "off",
+    "no-console": "off",
+    "react-native/no-inline-styles": "off"
   },
   "settings": {
     "import/resolver": {

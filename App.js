@@ -3,6 +3,8 @@ import React from 'react';
 import { SafeAreaView } from 'react-native';
 import SignUp from './src/screens/SignUp';
 
+console.disableYellowBox = true;
+
 function App() {
   return (
     <Container>
