@@ -1,14 +1,16 @@
 <p align="center">
-  <img width="450"  src="images/form4ulogo.png">
+  <img width="600"  src="images/form4ulogo.png">
 </p>
 
+<p align="center">
 A React Native form builder, simple, light and fast !
 
-1 - Define your json file with your [fields](/src/screens/SignUp/SignUpFields.js), can be any react-native field or valid component;
+- Define your json file with your [fields](/src/screens/SignUp/SignUpFields.js), can be any react-native field or valid component;
 
-2 - Define [validation](/src/screens/SignUp/SignUpFormValidationRules.js) with the flexibility of using a JavaScript function to define your custom fields validation.
+- Define [validation](/src/screens/SignUp/SignUpFormValidationRules.js) with the flexibility of using a JavaScript function;
+  </p>
 
-Package comes with a full Sign Up login screen.
+### Package comes with a full Sign Up login screen example.
 
 ---
 
