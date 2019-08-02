@@ -177,9 +177,8 @@ const handleSubmit = fields => {
 
 ---
 
-# BACKLOG
+## BACKLOG
 
-- [ x ] remove styled-component from Input from native-base, onChange and onChangeText were not been called
 - [ x ] refactor to use styled components
 - [ ] Implement other field types
 - [ ] Tests
@@ -187,6 +186,10 @@ const handleSubmit = fields => {
 ---
 
 ## VERSION HISTORY
+
+### 0.0.4
+
+- [ x ] remove styled-component from Input from native-base, onChange and onChangeText were not been called
 
 ### 0.0.3
 
