@@ -1,7 +1,12 @@
 <p align="center">
   <img width="700"  src="images/form4ulogo.png">
 
-[![NPM Version](https://img.shields.io/npm/v/react-native-form4u.svg?style=flat)](https://www.npmjs.com/package/react-native-form-builder)
+[![NPM Version](https://img.shields.io/npm/v/react-native-form4u.svg?style=flat)](https://www.npmjs.com/package/react-native-form4u)
+[![Build](https://img.shields.io/appveyor/ci/devrdias/react-native-form4u)](https://www.npmjs.com/package/react-native-form4u/build)
+![Dependencies](https://img.shields.io/david/devrdias/react-native-form4u)
+![Downloads](https://img.shields.io/npm/dt/react-native-form4u)
+[![Issues](https://img.shields.io/github/issues/devrdias/react-native-form4u)](https://github.com/devrdias/react-native-form4u/issues)
+[![Closed issues](https://img.shields.io/github/issues-closed-raw/devrdias/react-native-form4u)](https://github.com/devrdias/react-native-form4u/issues)
 
 # react-native-form4u
 
@@ -33,7 +38,7 @@
 
 ## Features
 
-- Prevent submit the form if is "dirty"
+- Prevents submit dirty forms
 - Use custom masks for input fields with help of [react-native-masked-text](https://github.com/benhurott/react-native-masked-text)
 - Supports custom validations
 - Define your own style for your fields or use default
@@ -204,7 +209,7 @@ const handleSubmit = fields => {
 ## [Using the component](/src/screens/SignUp/index.js)
 
 ```JSX
-<CustomForm
+<Form4u
   formFieldsRows={fields}
   handleSubmit={handleSubmit}
   validation={validationRules}

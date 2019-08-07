@@ -6,13 +6,13 @@ import CustomSwitch from './FormItems/CustomSwitch';
 import CustomButton from './FormItems/CustomButton';
 import CustomPicker from './FormItems/CustomPicker';
 import CustomTextInput from './FormItems/CustomTextInput';
-import useCustomForm from './hooks/useCustomForm';
+import useForm4u from './hooks/useForm4u';
 
 /**
  * A component which renders a form based on a given list of fields.
  */
-const CustomForm = ({
-  formFieldsRows, handleSubmit, validation, customFormStyle,
+const Form4u = ({
+  formFieldsRows, handleSubmit, validation, Form4uStyle,
 }) => {
   const {
     fields,
@@ -23,7 +23,7 @@ const CustomForm = ({
     resetForm,
     isValidFormData,
     isDirtyFormData,
-  } = useCustomForm(formFieldsRows, handleSubmit, validation);
+  } = useForm4u(formFieldsRows, handleSubmit, validation);
 
   /**
    * Reset the form and hide the keyboard.
@@ -115,7 +115,7 @@ const CustomForm = ({
   return (
     <>
       {isSubmitting && renderLoading()}
-      <Form autoFocus={false} style={{ ...customFormStyle }}>
+      <Form autoFocus={false} style={{ ...Form4uStyle }}>
         {formFieldsRows.map((formFieldsRow, i) => (
           <View style={styles.row} key={`f-${i}`}>
             {formFieldsRow.map((field) => {
@@ -146,7 +146,7 @@ const CustomForm = ({
   );
 };
 
-CustomForm.propTypes = {
+Form4u.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   formFieldsRows: PropTypes.arrayOf(
     PropTypes.arrayOf(
@@ -174,12 +174,12 @@ CustomForm.propTypes = {
       }),
     ),
   ).isRequired,
-  customFormStyle: PropTypes.object,
+  Form4uStyle: PropTypes.object,
   validation: PropTypes.func,
 };
 
-CustomForm.defaultProps = {
-  customFormStyle: { flex: 1 },
+Form4u.defaultProps = {
+  Form4uStyle: { flex: 1 },
   validation: () => undefined,
 };
 
@@ -199,4 +199,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CustomForm;
+export default Form4u;

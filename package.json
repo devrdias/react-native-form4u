@@ -1,7 +1,28 @@
 {
-  "name": "Form4u",
-  "version": "0.0.4",
-  "private": true,
+  "name": "@devrdias/Form4u",
+  "version": "0.0.1",
+  "description": "A React Native form builder, simple, light and fast",
+  "private": false,
+  "main": "/src/components/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devrdias/react-native-form4u.git"
+  },
+  "keywords": [
+    "react native",
+    "react",
+    "hooks",
+    "forms",
+    "form",
+    "form builder",
+    "javascript"
+  ],
+  "author": "Rafael Dias <devrdias@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devrdias/react-native-form4u/issues"
+  },
+  "homepage": "https://github.com/devrdias/react-native-form4u#readme",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"

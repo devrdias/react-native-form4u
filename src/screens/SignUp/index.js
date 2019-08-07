@@ -1,7 +1,7 @@
 import { Container, Content, Text } from 'native-base';
 import React from 'react';
 import { Alert, SafeAreaView, StyleSheet } from 'react-native';
-import CustomForm from '../../components/CustomForm';
+import Form4u from '../../components/Form4u';
 import formFields from './SignUpFields';
 import validationRules from './SignUpFormValidationRules';
 
@@ -27,7 +27,7 @@ const SignUp = () => {
       <SafeAreaView style={styles.safeArea}>
         <Content>
           <Text style={styles.textStyle}>Sign Up</Text>
-          <CustomForm
+          <Form4u
             formFieldsRows={formFields}
             handleSubmit={handleSubmit}
             validation={validationRules}
