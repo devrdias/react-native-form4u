@@ -1,5 +1,5 @@
 {
-  "name": "@devrdias/Form4u",
+  "name": "@devrdias/form4u",
   "version": "0.0.1",
   "description": "A React Native form builder, simple, light and fast",
   "private": false,
@@ -28,10 +28,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "native-base": "^2.12.1",
+    "native-base": "^2.13.4",
     "prop-types": "^15.7.2",
     "react": "16.8.3",
-    "react-native": "0.59.8",
+    "react-native": "^0.60.4",
     "react-native-masked-text": "^1.12.3",
     "react-native-vector-icons": "^6.6.0",
     "styled-components": "^4.3.2"

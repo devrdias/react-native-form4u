@@ -2,10 +2,9 @@ import { Form, View } from 'native-base';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { ActivityIndicator, Keyboard, StyleSheet } from 'react-native';
-import CustomSwitch from './FormItems/CustomSwitch';
-import CustomButton from './FormItems/CustomButton';
-import CustomPicker from './FormItems/CustomPicker';
-import CustomTextInput from './FormItems/CustomTextInput';
+import {
+  CustomSwitch, CustomButton, CustomPicker, CustomTextInput,
+} from './FormItems';
 import useForm4u from './hooks/useForm4u';
 
 /**

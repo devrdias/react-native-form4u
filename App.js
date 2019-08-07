@@ -1,7 +1,7 @@
 import { Container, Content } from 'native-base';
 import React from 'react';
 import { SafeAreaView } from 'react-native';
-import SignUp from './src/screens/SignUp';
+import SignUp from './src/examples/SignUp';
 
 console.disableYellowBox = true;
 

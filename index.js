@@ -7,3 +7,5 @@ import App from './App';
 import { name as appName } from './app.json';
 
 AppRegistry.registerComponent(appName, () => App);
+
+// export form4u from '~/components/form4u';
