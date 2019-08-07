@@ -1,20 +1,27 @@
 <p align="center">
-  <img width="600"  src="images/form4ulogo.png">
+  <img width="700"  src="images/form4ulogo.png">
+
+[![NPM Version](https://img.shields.io/npm/v/react-native-form4u.svg?style=flat)](https://www.npmjs.com/package/react-native-form-builder)
+
+# react-native-form4u
+
 </p>
 
 <p align="center">
-A React Native form builder, simple, light and fast !
+<br/>
+<b>A React Native form builder, simple, light and fast !</b>
 
-- Define your json file with your [fields](/src/screens/SignUp/SignUpFields.js), can be any react-native field or valid component;
+- Define [fields](/src/screens/SignUp/SignUpFields.js) using a simple json file. Any kind of react-native field or valid component is accepted;
 
-- Define [validation](/src/screens/SignUp/SignUpFormValidationRules.js) with the flexibility of using a JavaScript function;
-  </p>
+- Define [field validation](/src/screens/SignUp/SignUpFormValidationRules.js) with the flexibility of using a JavaScript function to return the erros;
 
-### Package comes with a full Sign Up login screen example.
+- Define your own [callback](/src/screens/SignUp/index.js) function to handle form submission;
+
+- Package comes with a full Sign Up login screen example.
+
+</p>
 
 ---
-
-## Example
 
 <p align="center">
   <img width="250"  src="images/formBlank.png">
@@ -24,7 +31,35 @@ A React Native form builder, simple, light and fast !
 
 ---
 
-### 1. [Defining Fields](/src/screens/SignUp/SignUpFields.js)
+## Features
+
+- Prevent submit the form if is "dirty"
+- Use custom masks for input fields with help of [react-native-masked-text](https://github.com/benhurott/react-native-masked-text)
+- Supports custom validations
+- Define your own style for your fields or use default
+- Uses <a href="https://github.com/GeekyAnts/NativeBase">Nativebase</a> components
+
+## Getting Started
+
+- [Installation](#installation)
+- [Basic Usage](#basic-usage)
+- [Properties](#properties)
+  - [Basic](#basic)
+  - [Methods](#methods)
+  * [Form Fields](#form-fields)
+    - [Field Structure](#field-structure)
+    - [Common Properties to all Fields](#common-properties-to-all-fields)
+    * [Field Types](#field-types)
+      - [TextInput](#textinput)
+      - [Picker](#picker)
+      - [Switch](#switch)
+      - [Date](#date)
+      - [Select](#select)
+  - [Add Form Validations](#add-custom-validations)
+  - [Add custom components](#add-custom-components)
+- [Example](#example)
+
+## [Defining Fields](/src/screens/SignUp/SignUpFields.js)
 
 ```javascript
 const fields = [
@@ -118,7 +153,7 @@ const fields = [
 ];
 ```
 
-### 2. [Defining form validation](/src/screens/SignUp/SignUpFormValidationRules.js) rules by field
+## [Defining form validation](/src/screens/SignUp/SignUpFormValidationRules.js) rules by field
 
 ```javascript
 const validate = ({ firstName, lastName, email, subject, password }) => {
@@ -151,7 +186,7 @@ const validate = ({ firstName, lastName, email, subject, password }) => {
 export default validate;
 ```
 
-### 3. [Declaring callback](/src/screens/SignUp/index.js) to be executed after form submission/validation
+## [Declaring callback](/src/screens/SignUp/index.js) to be executed after form submission/validation
 
 ```javascript
 const handleSubmit = fields => {
@@ -166,7 +201,7 @@ const handleSubmit = fields => {
 };
 ```
 
-### 4. [Using the component](/src/screens/SignUp/index.js)
+## [Using the component](/src/screens/SignUp/index.js)
 
 ```JSX
 <CustomForm
@@ -180,30 +215,24 @@ const handleSubmit = fields => {
 
 ## BACKLOG
 
-- [ x ] refactor to use styled components
-- [ ] Implement other field types
-- [ ] Tests
-- [ ] Documentation!!!
+- refactor to use styled components
+- Implement other field types
+- Tests
+- Documentation!!!
 
 ---
 
 ## VERSION HISTORY
 
-### 0.0.4
+### 0.0.1
 
-- [ x ] remove styled-component from Input from native-base, onChange and onChangeText were not been called
+- remove styled-component from Input from native-base, onChange and onChangeText were not been called
   [see more](https://github.com/GeekyAnts/NativeBase/issues/2692)
-- [ x ] fix errors view which was shrinking in few cases
-
-### 0.0.3
-
-- [ x ] implement form validation with error messages
-
-### 0.0.2
-
-- [ x ] Implement custom form picker
-- [ x ] Allows form to render any kind of React component
-- [ x ] Added react-native-maked-text to allows masked input texts
+- fix errors view which was shrinking in few cases
+- implement form validation with error messages
+- Implement custom form picker
+- Allows form to render any kind of React component
+- Added react-native-maked-text to allows masked input texts
 
 ---
 
