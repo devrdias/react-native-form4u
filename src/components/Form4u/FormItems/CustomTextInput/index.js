@@ -1,11 +1,9 @@
-import { Input, Label } from 'native-base';
-import PropTypes from 'prop-types';
-import React, { useRef, useState } from 'react';
-import Icon from 'react-native-vector-icons/AntDesign';
-import { StyleSheet } from 'react-native';
-import {
-  Container, Error, ErrorMessage, StyledItem,
-} from './styles';
+import { Input, Label } from "native-base";
+import PropTypes from "prop-types";
+import React, { useRef, useState } from "react";
+import Icon from "react-native-vector-icons/AntDesign";
+import { StyleSheet } from "react-native";
+import { Container, Error, ErrorMessage, StyledItem } from "./styles";
 
 /**
  * A stateless function component which renders a TextInput.
@@ -20,17 +18,17 @@ const CustomTextInput = ({
   errorMessage,
   ...inputProps
 }) => {
-  const [borderColor, setBorderColor] = useState('#78909C');
+  const [borderColor, setBorderColor] = useState("#78909C");
   const [borderWidth, setBorderWidth] = useState(2);
   const inputEl = useRef(null);
 
   const onFocus = () => {
-    setBorderColor('#0E80DA');
+    setBorderColor("#0E80DA");
     setBorderWidth(2);
   };
 
   const onBlur = () => {
-    setBorderColor('#78909C');
+    setBorderColor("#78909C");
     setBorderWidth(1);
   };
 
@@ -53,7 +51,9 @@ const CustomTextInput = ({
           onFocus={onFocus}
           {...inputProps}
         />
-        {error && <Icon type="AntDesign" style={{ color: 'red' }} name="close" />}
+        {error && (
+          <Icon type="AntDesign" style={{ color: "red" }} name="close" />
+        )}
       </StyledItem>
 
       <Error>
@@ -71,27 +71,28 @@ CustomTextInput.propTypes = {
   borderWidth: PropTypes.number,
   borderColor: PropTypes.string,
   error: PropTypes.bool,
-  errorMessage: PropTypes.string,
+  type: PropTypes.string,
+  errorMessage: PropTypes.string
 };
 
 CustomTextInput.defaultProps = {
-  labelText: ' ',
+  labelText: " ",
   multiline: false,
   inputProps: {},
   floatingLabel: true,
   borderWidth: 0,
-  borderColor: '#78909C',
+  borderColor: "#78909C",
   error: false,
-  errorMessage: ' ',
+  errorMessage: " "
 };
 
 const styles = StyleSheet.create({
   textInput: {
-    fontSize: 15,
+    fontSize: 15
   },
   textarea: {
-    height: 80,
-  },
+    height: 80
+  }
 });
 
 export default CustomTextInput;

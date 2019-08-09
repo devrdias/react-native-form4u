@@ -1,18 +1,19 @@
-import { Form, View } from 'native-base';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { ActivityIndicator, Keyboard, StyleSheet } from 'react-native';
+import { Form, View } from "native-base";
+import PropTypes from "prop-types";
+import React from "react";
+import { ActivityIndicator, Keyboard, StyleSheet } from "react-native";
 import {
-  CustomSwitch, CustomButton, CustomPicker, CustomTextInput,
-} from './FormItems';
-import useForm4u from './hooks/useForm4u';
+  CustomSwitch,
+  CustomButton,
+  CustomPicker,
+  CustomTextInput
+} from "./FormItems";
+import useForm4u from "./hooks/useForm4u";
 
 /**
  * A component which renders a form based on a given list of fields.
  */
-const Form4u = ({
-  formFieldsRows, handleSubmit, validation, Form4uStyle,
-}) => {
+const Form4u = ({ formFields, handleSubmit, validation, form4uStyle }) => {
   const {
     fields,
     handleOnChangeValue,
@@ -20,9 +21,8 @@ const Form4u = ({
     isSubmitting,
     handleOnSubmitForm,
     resetForm,
-    isValidFormData,
-    isDirtyFormData,
-  } = useForm4u(formFieldsRows, handleSubmit, validation);
+    isValidFormData
+  } = useForm4u(formFields, handleSubmit, validation);
 
   /**
    * Reset the form and hide the keyboard.
@@ -32,9 +32,9 @@ const Form4u = ({
     resetForm();
   };
 
-  const renderTextInput = ({ name, label, inputProps }) => {
+  const renderTextInput = ({ name, label, inputProps, type }) => {
     const hasError = !!errors[name];
-    const errorMessage = hasError ? errors[name] : ' ';
+    const errorMessage = hasError ? errors[name] : " ";
 
     return (
       <CustomTextInput
@@ -45,6 +45,7 @@ const Form4u = ({
         error={hasError}
         errorMessage={errorMessage}
         key={name}
+        type={type}
       />
     );
   };
@@ -59,37 +60,40 @@ const Form4u = ({
     />
   );
 
-  const renderButton = ({ label, buttonProps }) => {
-    const disabled = buttonProps && buttonProps.preventSubmitOnDirty ? !isValidFormData : false;
+  const renderButton = ({ label, buttonProps, type }) => {
+    const disabled =
+      buttonProps && buttonProps.preventSubmitOnDirty
+        ? !isValidFormData
+        : false;
 
-    return label.toUpperCase().includes('RESET') ? (
-      <CustomButton {...buttonProps} onPress={handleOnClickReset} disabled={disabled} key={label}>
-        {label}
-      </CustomButton>
-    ) : (
-      <CustomButton {...buttonProps} onPress={handleOnSubmitForm} disabled={disabled} key={label}>
+    return (
+      <CustomButton
+        {...buttonProps}
+        onPress={type === "reset" ? handleOnClickReset : handleOnSubmitForm}
+        disabled={disabled}
+        key={label}
+      >
         {label}
       </CustomButton>
     );
   };
 
-  const renderReactComponent = ({ children, customStyle }) => (children ? (
-    <View
+  const renderCustomComponent = ({ children, customStyle }) =>
+    children ? (
+      <View
         // style={[{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end' }, { ...customStyle }]}
-      style={styles.row}
-      key={children.key}
-    >
-      {children}
-    </View>
-  ) : (
-    <View />
-  ));
+        style={styles.row}
+        key={children.key}
+      >
+        {children}
+      </View>
+    ) : (
+      <View />
+    );
 
-  const renderPicker = ({
-    name, placeholder, pickerItems, pickerProps,
-  }) => {
+  const renderPicker = ({ name, placeholder, pickerItems, pickerProps }) => {
     const hasError = !!errors[name];
-    const errorMessage = hasError ? errors[name] : ' ';
+    const errorMessage = hasError ? errors[name] : " ";
 
     return (
       <CustomPicker
@@ -114,24 +118,34 @@ const Form4u = ({
   return (
     <>
       {isSubmitting && renderLoading()}
-      <Form autoFocus={false} style={{ ...Form4uStyle }}>
-        {formFieldsRows.map((formFieldsRow, i) => (
+      <Form autoFocus={false} style={{ ...form4uStyle }}>
+        {formFields.map((fields, i) => (
           <View style={styles.row} key={`f-${i}`}>
-            {formFieldsRow.map((field) => {
+            {fields.map(field => {
               switch (field.type) {
-                case 'boolean':
+                case "boolean":
                   return renderBooleanInput(field);
 
-                case 'button':
+                case "button":
+                case "reset":
                   return renderButton(field);
 
-                case 'reactComponent':
-                  return renderReactComponent(field);
+                case "customComponent":
+                  return renderCustomComponent(field);
 
-                case 'input':
+                case "text":
+                case "email":
+                case "credit-card":
+                case "cpf":
+                case "cnpj":
+                case "zip-code":
+                case "only-numbers":
+                case "money":
+                case "cel-phone":
+                case "datetime":
                   return renderTextInput(field);
 
-                case 'picker':
+                case "picker":
                   return renderPicker(field);
 
                 default:
@@ -147,55 +161,59 @@ const Form4u = ({
 
 Form4u.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  formFieldsRows: PropTypes.arrayOf(
+  formFields: PropTypes.arrayOf(
     PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         label: PropTypes.string,
-        type: PropTypes.oneOf(['boolean', 'button', 'reactComponent', 'input', 'picker'])
-          .isRequired,
+        type: PropTypes.oneOf([
+          "boolean",
+          "button",
+          "reset",
+          "customComponent",
+          "text",
+          "picker",
+          "email",
+          "credit-card",
+          "cpf",
+          "cnpj",
+          "zip-code",
+          "only-numbers",
+          "money",
+          "cel-phone",
+          "datetime"
+        ]).isRequired,
         inputProps: PropTypes.object,
         defaultValue: PropTypes.any,
         customStyle: PropTypes.object,
-        maskType: PropTypes.oneOf([
-          'credit-card',
-          'cpf',
-          'cnpj',
-          'zip-code',
-          'only-numbers',
-          'money',
-          'cel-phone',
-          'datetime',
-          'custom',
-        ]),
-        maskOptions: PropTypes.object,
-        buttonProps: PropTypes.object,
-      }),
-    ),
+        mask: PropTypes.string,
+        buttonProps: PropTypes.object
+      })
+    )
   ).isRequired,
-  Form4uStyle: PropTypes.object,
-  validation: PropTypes.func,
+  form4uStyle: PropTypes.object,
+  validation: PropTypes.func
 };
 
 Form4u.defaultProps = {
-  Form4uStyle: { flex: 1 },
-  validation: () => undefined,
+  form4uStyle: { flex: 1 },
+  validation: () => undefined
 };
 
 const styles = StyleSheet.create({
   row: {
-    flexDirection: 'row',
-    paddingBottom: 15,
+    flexDirection: "row",
+    paddingBottom: 15
   },
   loading: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     right: 0,
     top: 0,
     bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    alignItems: "center",
+    justifyContent: "center"
+  }
 });
 
 export default Form4u;

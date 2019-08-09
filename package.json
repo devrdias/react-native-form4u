@@ -1,19 +1,26 @@
 {
-  "name": "@devrdias/form4u",
-  "version": "0.0.1",
+  "name": "react-native-form4u",
+  "version": "1.0.0",
   "description": "A React Native form builder, simple, light and fast",
-  "private": false,
-  "main": "/src/components/index.js",
+  "main": "/src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/devrdias/react-native-form4u.git"
   },
   "keywords": [
-    "react native",
+    "android",
+    "ios",
     "react",
+    "native",
     "hooks",
-    "forms",
+    "react-native",
+    "react native",
+    "native-modules",
+    "native modules",
     "form",
+    "form generator",
+    "generator",
+    "builder",
     "form builder",
     "javascript"
   ],
@@ -24,37 +31,26 @@
   },
   "homepage": "https://github.com/devrdias/react-native-form4u#readme",
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "native-base": "^2.13.4",
     "prop-types": "^15.7.2",
-    "react": "16.8.3",
-    "react-native": "^0.60.4",
     "react-native-masked-text": "^1.12.3",
-    "react-native-vector-icons": "^6.6.0",
+    "react-native-i18n": "^1.0.0",
+    "react-native-keyboard-aware-scroll-view": "^0.5.0",
     "styled-components": "^4.3.2"
   },
   "devDependencies": {
-    "@babel/core": "7.4.4",
-    "@babel/preset-flow": "^7.0.0",
-    "@babel/runtime": "7.4.4",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.0.2",
-    "babel-jest": "^23.4.2",
-    "babel-plugin-root-import": "^6.2.0",
-    "babel-plugin-styled-components": "^1.10.6",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.1",
-    "eslint-import-resolver-babel-plugin-root-import": "^1.1.1",
-    "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.14.2",
-    "eslint-plugin-react-native": "^3.7.0",
-    "jest": "24.8.0",
-    "metro-react-native-babel-preset": "0.54.1",
-    "react-test-renderer": "16.8.3"
+    "native-base": "^2.13.4",
+    "react": "16.8.3",
+    "react-native": "^0.60.4",
+    "react-native-vector-icons": "^6.6.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-native": ">=0.59.0",
+    "native-base": "^2.13.0",
+    "react-native-vector-icons": "^6.6.0"
   },
   "jest": {
     "preset": "react-native"
