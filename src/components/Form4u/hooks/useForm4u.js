@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { MaskService } from "react-native-masked-text";
+import { useState, useEffect } from 'react';
+import { MaskService } from 'react-native-masked-text';
+import defaultValidation from '../FormItems/defaultValidations';
 
 const useCustomForm = (formFields, callback, validate) => {
   const formInitialState = getInitialFormState();
@@ -15,10 +16,8 @@ const useCustomForm = (formFields, callback, validate) => {
      * Check if all fields have been filled out.
      */
     // filter out fields which does not need to be checked if they are filled out
-    const skipFieldType = ["boolean", "button", "customComponent"];
-    const filteredFields = getFormFields().filter(
-      ({ type }) => !skipFieldType.includes(type)
-    );
+    const skipFieldType = ['boolean', 'button', 'customComponent'];
+    const filteredFields = getFormFields().filter(({ type }) => !skipFieldType.includes(type));
 
     // check if all remaining fields have been filled out
     const isFilled = filteredFields.every(field => !!fields[field.name].value);
@@ -27,9 +26,9 @@ const useCustomForm = (formFields, callback, validate) => {
     /**
      * Check if at least one field has been filled out.
      */
-    const isDirty = formFields.some(field => {
+    const isDirty = formFields.some((field) => {
       switch (field.type) {
-        case "boolean":
+        case 'boolean':
           // because Boolean fields will have a default value,
           // we need to check if the current value is not the default one
           return fields[field.name] !== getFormFieldDefaultValue(field);
@@ -49,6 +48,7 @@ const useCustomForm = (formFields, callback, validate) => {
     if (Object.keys(errors).length === 0 && isSubmitting && isValidFormData) {
       return callback(fields);
     }
+    return () => undefined;
   }, [errors]);
 
   /**
@@ -61,10 +61,10 @@ const useCustomForm = (formFields, callback, validate) => {
     }
 
     switch (type) {
-      case "boolean":
+      case 'boolean':
         return false;
       default:
-        return "";
+        return '';
     }
   }
 
@@ -85,8 +85,9 @@ const useCustomForm = (formFields, callback, validate) => {
   function getInitialFormState() {
     const formFieldNames = getFormFields().reduce((obj, field) => {
       const value = getFormFieldDefaultValue(field);
-      obj[field.name] = { value };
-      return obj;
+      const fld = { ...obj };
+      fld[field.name] = { value };
+      return fld;
     }, {});
 
     return formFieldNames;
@@ -103,22 +104,20 @@ const useCustomForm = (formFields, callback, validate) => {
   /**
    * Handle callback onChangeValue from inputs and other components
    */
-  const handleOnChangeValue = fieldName => text => {
+  const handleOnChangeValue = fieldName => (text) => {
     // check if field needs to be masked
     const toMask = getFormFields()
       .filter(f => f.name === fieldName)
       .reduce(
         (obj, item) => ({
           maskType: getDefaultMaskType(item.type),
-          mask: item.mask
+          mask: item.mask,
         }),
-        {}
+        {},
       );
 
     // mask field if needed
-    const masked = toMask.maskType
-      ? MaskService.toMask(toMask.maskType, text, toMask.mask)
-      : text;
+    const masked = toMask.maskType ? MaskService.toMask(toMask.maskType, text, toMask.mask) : text;
 
     setFields({ ...fields, [fieldName]: { value: masked, rawValue: text } });
   };
@@ -126,16 +125,16 @@ const useCustomForm = (formFields, callback, validate) => {
   /** Used to get default mask types for fields
    *  Uses same default types as in react-native-masked-text
    */
-  getDefaultMaskType = type => {
+  const getDefaultMaskType = (type) => {
     const types = [
-      "credit-card",
-      "cpf",
-      "cnpj",
-      "zip-code",
-      "only-numbers",
-      "money",
-      "cel-phone",
-      "datetime"
+      'credit-card',
+      'cpf',
+      'cnpj',
+      'zip-code',
+      'only-numbers',
+      'money',
+      'cel-phone',
+      'datetime',
     ];
     if (types.includes(type)) {
       return type;
@@ -145,7 +144,10 @@ const useCustomForm = (formFields, callback, validate) => {
 
   const handleOnSubmitForm = () => {
     setIsSubmitting(true); // prevents the form from submitting on render
-    const returnedErrors = validate(fields);
+    const defaultErrors = defaultValidation(getFormFields());
+    const customErrors = validate(fields);
+    debugger;
+    const returnedErrors = { ...defaultErrors, ...customErrors };
     setErrors(returnedErrors);
   };
 
@@ -157,7 +159,7 @@ const useCustomForm = (formFields, callback, validate) => {
     resetForm,
     handleOnChangeValue,
     isValidFormData,
-    isDirtyFormData
+    isDirtyFormData,
   };
 };
 

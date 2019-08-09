@@ -1,9 +1,11 @@
-import { Input, Label } from "native-base";
-import PropTypes from "prop-types";
-import React, { useRef, useState } from "react";
-import Icon from "react-native-vector-icons/AntDesign";
-import { StyleSheet } from "react-native";
-import { Container, Error, ErrorMessage, StyledItem } from "./styles";
+import { Input, Label } from 'native-base';
+import PropTypes from 'prop-types';
+import React, { useRef, useState } from 'react';
+import Icon from 'react-native-vector-icons/AntDesign';
+import { StyleSheet } from 'react-native';
+import {
+  Container, Error, ErrorMessage, StyledItem,
+} from './styles';
 
 /**
  * A stateless function component which renders a TextInput.
@@ -16,19 +18,19 @@ const CustomTextInput = ({
   floatingLabel,
   error,
   errorMessage,
-  ...inputProps
+  ...fieldProps
 }) => {
-  const [borderColor, setBorderColor] = useState("#78909C");
+  const [borderColor, setBorderColor] = useState('#78909C');
   const [borderWidth, setBorderWidth] = useState(2);
   const inputEl = useRef(null);
 
   const onFocus = () => {
-    setBorderColor("#0E80DA");
+    setBorderColor('#0E80DA');
     setBorderWidth(2);
   };
 
   const onBlur = () => {
-    setBorderColor("#78909C");
+    setBorderColor('#78909C');
     setBorderWidth(1);
   };
 
@@ -49,11 +51,9 @@ const CustomTextInput = ({
           multiline={multiline}
           onBlur={onBlur}
           onFocus={onFocus}
-          {...inputProps}
+          {...fieldProps}
         />
-        {error && (
-          <Icon type="AntDesign" style={{ color: "red" }} name="close" />
-        )}
+        {error && <Icon type="AntDesign" style={{ color: 'red' }} name="close" />}
       </StyledItem>
 
       <Error>
@@ -66,33 +66,32 @@ const CustomTextInput = ({
 CustomTextInput.propTypes = {
   labelText: PropTypes.string,
   multiline: PropTypes.bool,
-  inputProps: PropTypes.object,
+  fieldProps: PropTypes.object,
   floatingLabel: PropTypes.bool,
   borderWidth: PropTypes.number,
   borderColor: PropTypes.string,
   error: PropTypes.bool,
-  type: PropTypes.string,
-  errorMessage: PropTypes.string
+  errorMessage: PropTypes.string,
 };
 
 CustomTextInput.defaultProps = {
-  labelText: " ",
+  labelText: ' ',
   multiline: false,
-  inputProps: {},
+  fieldProps: {},
   floatingLabel: true,
   borderWidth: 0,
-  borderColor: "#78909C",
+  borderColor: '#78909C',
   error: false,
-  errorMessage: " "
+  errorMessage: ' ',
 };
 
 const styles = StyleSheet.create({
   textInput: {
-    fontSize: 15
+    fontSize: 15,
   },
   textarea: {
-    height: 80
-  }
+    height: 80,
+  },
 });
 
 export default CustomTextInput;

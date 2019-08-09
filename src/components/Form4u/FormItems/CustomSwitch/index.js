@@ -8,11 +8,11 @@ import { Container, SwitchText } from './styles';
  * @param {obj} props
  */
 const CustomSwitch = (props) => {
-  const { labelText, ...inputProps } = props;
+  const { labelText, ...fieldProps } = props;
 
   return (
     <Container>
-      <Switch {...inputProps} />
+      <Switch {...fieldProps} />
       <SwitchText>{labelText}</SwitchText>
     </Container>
   );

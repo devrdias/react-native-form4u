@@ -6,7 +6,7 @@ export const Container = styled.View`
   padding: 4px;
 `;
 
-export const StyledInput = styled(Input).attrs(props => ({
+export const StyledInput = styled(Input).attrs(() => ({
   blurOnSubmit: true,
   returnKeyType: 'next',
 }))`
