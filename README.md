@@ -2,37 +2,27 @@
   <img width="700"  src="images/form4ulogo.png">
 
 [![NPM Version](https://img.shields.io/npm/v/react-native-form4u.svg?style=flat)](https://www.npmjs.com/package/react-native-form4u)
-[![Build](https://img.shields.io/appveyor/ci/devrdias/react-native-form4u)](https://www.npmjs.com/package/react-native-form4u/build)
 ![Dependencies](https://img.shields.io/david/devrdias/react-native-form4u)
-![Downloads](https://img.shields.io/npm/dt/react-native-form4u)
+![Downloads](https://img.shields.io/npm/dw/react-native-form4u)
 [![Issues](https://img.shields.io/github/issues/devrdias/react-native-form4u)](https://github.com/devrdias/react-native-form4u/issues)
 [![Closed issues](https://img.shields.io/github/issues-closed-raw/devrdias/react-native-form4u)](https://github.com/devrdias/react-native-form4u/issues)
 
 # react-native-form4u
 
-</p>
+## A React Native form builder, simple, light and fast !
 
-<p align="center">
-<br/>
-<b>A React Native form builder, simple, light and fast !</b>
-
-- Define [fields](/src/screens/SignUp/SignUpFields.js) using a simple json file. Any kind of react-native field or valid component is accepted;
-
-- Define [field validation](/src/screens/SignUp/SignUpFormValidationRules.js) with the flexibility of using a JavaScript function to return the erros;
-
-- Define your own [callback](/src/screens/SignUp/index.js) function to handle form submission;
-
+- Define [fields](/src/examples/SignUp/SignUpFields.js) using a simple json file. Any kind of react-native field or valid component is accepted;
+- Define [field validation](/src/examples/SignUp/SignUpFormValidationRules.js) with the flexibility of using a JavaScript function to return the erros;
+- Define your own [callback](/src/examples/SignUp/index.js) function to handle form submission;
 - Package comes with a full Sign Up login screen example.
 
-</p>
+<br/>
 
 ---
 
-<p align="center">
-  <img width="250"  src="images/formBlank.png">
-  <img width="250"  src="images/formFilled.png">
-  <img width="250"  src="images/formErrors.png">
-</p>
+  <img width="250" src="images/formBlank.png">
+  <img width="250" src="images/formFilled.png">
+  <img width="250" src="images/formErrors.png">
 
 ---
 
@@ -48,27 +38,81 @@
 - Define your own style for your fields
 - Uses <a href="https://github.com/GeekyAnts/NativeBase">Nativebase</a> components
 
+---
+
 ## Getting Started
 
 - [Installation](#installation)
 - [Basic Usage](#basic-usage)
+  - [Fields](#fields)
+  - [Validation](#validation)
+  - [Submit](#submit)
+- [Field Types](#field-types)
+  - [TextInput](#textinput)
+  - [Button](#button)
+  - [Picker](#picker)
+  - [Switch](#switch)
+  - [Date](#date)
+  - [Select](#select)
+  - [Custom](#custom)
 - [Properties](#properties)
-  - [Basic](#basic)
-  - [Methods](#methods)
-  * [Form Fields](#form-fields)
-    - [Field Structure](#field-structure)
-    - [Common Properties to all Fields](#common-properties-to-all-fields)
-    * [Field Types](#field-types)
-      - [TextInput](#textinput)
-      - [Picker](#picker)
-      - [Switch](#switch)
-      - [Date](#date)
-      - [Select](#select)
-  - [Add Form Validations](#add-custom-validations)
-  - [Add custom components](#add-custom-components)
-- [Example](#example)
+  - [Form properties](#form-properties)
+  - [Field properties](#field-properties)
+- [Sign up form example](/src/examples/SignUp/index.js)
 
-## [Defining Fields](/src/screens/SignUp/SignUpFields.js)
+---
+
+## Installation
+
+### Install Peer Dependencies
+
+The peer dependencies included from any npm packages does not automatically get installed. Your application will not depend on it explicitly.
+
+`react-native-form4u` requires a peer of [`native-base`](https://github.com/GeekyAnts/NativeBase)
+
+Install NativeBase
+
+```bash
+npm install native-base --save
+```
+
+Link the library
+
+```bash
+react-native link native-base
+```
+
+### Icons
+
+If you have icons problems, please try to install and link [`react-native-vector-icons`](https://github.com/oblador/react-native-vector-icons)
+
+```bash
+npm install --save react-native-vector-icon
+```
+
+```bash
+react-native link react-native-vector-icons
+```
+
+### Install Form4u
+
+```bash
+$ npm i react-native-form4u --save
+```
+
+## Basic Usage
+
+- Make sure you have react-native installed
+
+```bash
+npm i -g react-native
+```
+
+---
+
+## Fields
+
+[see more](/src/examples/SignUp/SignUpFields.js)
 
 ```javascript
 const fields = [
@@ -162,7 +206,9 @@ const fields = [
 ];
 ```
 
-## [Defining form validation](/src/screens/SignUp/SignUpFormValidationRules.js) rules by field
+## Validation
+
+[see more](/src/examples/SignUp/SignUpFormValidationRules.js)
 
 ```javascript
 const validate = ({ firstName, lastName, email, subject, password }) => {
@@ -195,7 +241,11 @@ const validate = ({ firstName, lastName, email, subject, password }) => {
 export default validate;
 ```
 
-## [Declaring callback](/src/screens/SignUp/index.js) to be executed after form submission/validation
+## Submit
+
+[see more](/src/examples/SignUp/index.js)
+
+- this callback is executed after form submission/validation
 
 ```javascript
 const handleSubmit = fields => {
@@ -210,13 +260,14 @@ const handleSubmit = fields => {
 };
 ```
 
-## [Using the component](/src/screens/SignUp/index.js)
+## [Using the component](/src/examples/SignUp/index.js)
 
-```JSX
+```jsx
 <Form4u
   formFieldsRows={fields}
   handleSubmit={handleSubmit}
   validation={validationRules}
+  submitOnDirty
 />
 ```
 
@@ -231,7 +282,7 @@ const handleSubmit = fields => {
 
 ---
 
-## VERSION HISTORY
+## Version History
 
 ### 0.0.1
 
@@ -245,13 +296,12 @@ const handleSubmit = fields => {
 
 ---
 
-## CONTRIBUTING
+## Contributing
 
-Any kind o help is appreciated, so please let's grow the community together.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-If you would like to contribute whith this project somehow, please read
-[CONTRIBUTING](CONTRIBUTING.md)
+Please make sure to update tests as appropriate.
 
 ## License
 
-This project is licensed under the MIT License.
+[MIT](https://choosealicense.com/licenses/mit/)

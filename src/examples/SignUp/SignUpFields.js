@@ -65,7 +65,7 @@ const formFields = [
       label: 'Sign Up',
       type: 'button',
       fieldProps: {
-        preventSubmitOnDirty: false,
+        submitOnDirty: true,
       },
     },
   ],

@@ -11,8 +11,9 @@ import useForm4u from './hooks/useForm4u';
  * A component which renders a form based on a given list of fields.
  */
 const Form4u = ({
-  formFields, handleSubmit, validation, formStyle,
+  formFields, handleSubmit, submitOnDirty, validation, formStyle,
 }) => {
+  // initialize the hook
   const {
     fields,
     handleOnChangeValue,
@@ -62,7 +63,7 @@ const Form4u = ({
   );
 
   const renderButton = ({ label, fieldProps, type }) => {
-    const disabled = fieldProps && fieldProps.preventSubmitOnDirty ? !isValidFormData : false;
+    const disabled = !submitOnDirty && !isValidFormData;
 
     return (
       <CustomButton
@@ -159,6 +160,7 @@ const Form4u = ({
 
 Form4u.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
+  submitOnDirty: PropTypes.bool,
   formFields: PropTypes.arrayOf(
     PropTypes.arrayOf(
       PropTypes.shape({
@@ -195,6 +197,7 @@ Form4u.propTypes = {
 
 Form4u.defaultProps = {
   formStyle: {},
+  submitOnDirty: false,
   formFields: {
     label: null,
     required: false,
