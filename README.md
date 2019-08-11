@@ -382,32 +382,7 @@ Most [style properties](http://facebook.github.io/react-native/docs/style.html) 
 
 If you want, we use the [`MaskService`](https://github.com/benhurott/react-native-masked-text/blob/master/README.md#extra-maskservice) from [`react-native-masked-text`](https://github.com/benhurott/react-native-masked-text/blob/master/README.md)
 
-**Methods**
-
-- static toMask(type, value, settings): mask a value.
-  - `type` (String, required): the type of the mask (`cpf`, `datetime`, etc...)
-  - `value` (String, required): the value to be masked
-  - `settings` (Object, optional): if the mask type accepts options, pass it in the settings parameter
-- static toRawValue(type, maskedValue, settings): get the raw value of a masked value.
-  - `type` (String, required): the type of the mask (`cpf`, `datetime`, etc...)
-  - `maskedValue` (String, required): the masked value to be converted in raw value
-  - `settings` (Object, optional): if the mask type accepts options, pass it in the settings parameter
-- static isValid(type, value, settings): validate if the mask and the value match.
-  - `type` (String, required): the type of the mask (`cpf`, `datetime`, etc...)
-  - `value` (String, required): the value to be masked
-  - `settings` (Object, optional): if the mask type accepts options, pass it in the settings parameter
-- static getMask(type, value, settings): get the mask used to mask the value
-
-Ex:
-
-````jsx
-import { MaskService } from 'react-native-masked-text'
-
-var money = MaskService.toMask('money', '123', {
-    unit: 'US$',
-    separator: '.',
-    delimiter: ','
-})
+under construction!!!
 
 ## `Form example`
 
@@ -430,7 +405,7 @@ const App = () => {
 };
 
 export default App;
-````
+```
 
 ---
 
