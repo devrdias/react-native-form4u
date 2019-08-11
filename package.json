@@ -1,6 +1,6 @@
 {
   "name": "react-native-form4u",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A React Native form builder, simple, light and fast",
   "main": "/src/index.js",
   "repository": {
