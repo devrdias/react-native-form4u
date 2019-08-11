@@ -30,12 +30,12 @@
 
 - Prevents submit dirty forms
 - Initialize fields with default values
-- Default mask types for most common field types, like datetime, only number, zip code, Brazilian CPF/CNPJ
+- Default mask types for most common field types, like datetime, only number, zip code, currency, Brazilian CPF/CNPJ
 - Use custom masks with help of [react-native-masked-text](https://github.com/benhurott/react-native-masked-text)
 - Supports custom validations
 - Implements default validations for common field types (email)
-- Define your own style for your form
-- Define your own style for your fields
+- Define your own Form style
+- Define your own Field style
 - Uses <a href="https://github.com/GeekyAnts/NativeBase">Nativebase</a> components
 
 ---
@@ -45,24 +45,34 @@
 - [Installation](#installation)
 - [Basic Usage](#basic-usage)
   - [Fields](#fields)
+    - [Field structure](#field-sctructure)
   - [Validation](#validation)
   - [Submit](#submit)
 - [Field Types](#field-types)
-  - [TextInput](#textinput)
-  - [Button](#button)
-  - [Picker](#picker)
-  - [Switch](#switch)
-  - [Date](#date)
-  - [Select](#select)
-  - [Custom](#custom)
+  - [boolean](#boolean)
+  - [button](#button)
+  - [reset](#reset)
+  - [customComponent](#customComponent)
+  - [text](#text)
+  - [email](#email)
+  - [credit-card](#credit)
+  - [cpf](#cpf)
+  - [cnpj](#cnpj)
+  - [zip-code](#zip)
+  - [only-numbers](#only)
+  - [money](#money)
+  - [cel-phone](#cel)
+  - [datetime](#datetime)
+  - [picker](#picker)
 - [Properties](#properties)
   - [Form properties](#form-properties)
   - [Field properties](#field-properties)
-- [Sign up form example](/src/examples/SignUp/index.js)
+    - [Custom masks](#custom-masks)
+- [Form example](/src/examples/SignUp/index.js)
 
 ---
 
-## Installation
+## `Installation`
 
 ### Install Peer Dependencies
 
@@ -100,7 +110,7 @@ react-native link react-native-vector-icons
 $ npm i react-native-form4u --save
 ```
 
-## Basic Usage
+## `Basic Usage`
 
 - Make sure you have react-native installed
 
@@ -110,9 +120,45 @@ npm i -g react-native
 
 ---
 
-## Fields
+### Fields
 
 [see more](/src/examples/SignUp/SignUpFields.js)
+
+#### Field structure
+
+Fields are array items. You can easily define more than one field per `row`. See example for more details.
+
+| Prop               | Description                             | Default                       |
+| ------------------ | --------------------------------------- | ----------------------------- |
+| **`name`**         | Field name                              | _None_                        |
+| **`label`**        | Field label                             | _None_                        |
+| **`required`**     | Required field                          | _false_                       |
+| **`type`**         | Field type                              | [_Field Types_](#field-types) |
+| **`fieldProps`**   | Default react props for each field type | _None_                        |
+| **`defaultValue`** | Default value for the field             | _None_                        |
+| **`fieldStyle`**   | Style object for the field              | _None_                        |
+| **`mask`**         | Custom mask for the field               | _None_                        |
+
+```javascript
+formFields = [
+  [
+    {
+      name: "field1",
+      label: "Field 1",
+      required: false,
+      type: "text",
+      fieldProps: {},
+      defaultValue: null,
+      fieldStyle: {},
+      mask: {}
+    }
+  ]
+];
+```
+
+<br>
+
+Example:
 
 ```javascript
 const fields = [
@@ -206,7 +252,7 @@ const fields = [
 ];
 ```
 
-## Validation
+### Validation
 
 [see more](/src/examples/SignUp/SignUpFormValidationRules.js)
 
@@ -241,7 +287,7 @@ const validate = ({ firstName, lastName, email, subject, password }) => {
 export default validate;
 ```
 
-## Submit
+### Submit
 
 [see more](/src/examples/SignUp/index.js)
 
@@ -260,31 +306,145 @@ const handleSubmit = fields => {
 };
 ```
 
-## [Using the component](/src/examples/SignUp/index.js)
+## `Field Types`
+
+### boolean
+
+### button
+
+### reset
+
+### customComponent
+
+### text
+
+### email
+
+### credit-card
+
+Field will be automatically formated according to card provider:
+
+- visa or master: `9999 9999 9999 9999` or `9999 **** **** 9999` (obfuscated)
+- amex: `9999 999999 99999` or `9999 ****** 99999` (obfuscated)
+- diners: `9999 999999 9999` or `9999 ****** 9999` (obfuscated)
+
+### cpf
+
+Field will be automatically formated for `999.999.999-99`
+
+### cnpj
+
+Field will be automatically formated for `99.999.999/9999-99`
+
+### zip-code
+
+Field will be automatically formated for `99999-999`
+
+### only-numbers
+
+`accept only numbers`
+
+### money
+
+### cel-phone
+
+### datetime
+
+### picker
+
+## `Properties`
+
+### Form properties
+
+Any [View property](http://facebook.github.io/react-native/docs/view.html) and the following:
+
+| Prop                | Description                                                          | Default                      |
+| ------------------- | -------------------------------------------------------------------- | ---------------------------- |
+| **`formFields`**    | Object with field definitions.                                       | _None_                       |
+| **`handleSubmit`**  | Callback function to handle form submission                          | _Inherited_                  |
+| **`validation`**    | Function to return errors object                                     | _{fieldName: error message}_ |
+| **`submitOnDirty`** | Disable form buttons in case form is dirty (empty or with errors)    | _false_                      |
+| **`formStyle`**     | Style object with custom styles. Overrides default style of the Form | _{flex:1 , padding: 10}_     |
+
+### Field properties
+
+Most [style properties](http://facebook.github.io/react-native/docs/style.html) will work as expected.
+
+| Prop        | Description                                                             | Default     |
+| ----------- | ----------------------------------------------------------------------- | ----------- |
+| **`size`**  | Size of the icon, can also be passed as `fontSize` in the style object. | `12`        |
+| **`name`**  | What icon to show, see Icon Explorer app or one of the links above.     | _None_      |
+| **`color`** | Color of the icon.                                                      | _Inherited_ |
+
+<br>
+
+#### Custom masks
+
+If you want, we use the [`MaskService`](https://github.com/benhurott/react-native-masked-text/blob/master/README.md#extra-maskservice) from [`react-native-masked-text`](https://github.com/benhurott/react-native-masked-text/blob/master/README.md)
+
+**Methods**
+
+- static toMask(type, value, settings): mask a value.
+  - `type` (String, required): the type of the mask (`cpf`, `datetime`, etc...)
+  - `value` (String, required): the value to be masked
+  - `settings` (Object, optional): if the mask type accepts options, pass it in the settings parameter
+- static toRawValue(type, maskedValue, settings): get the raw value of a masked value.
+  - `type` (String, required): the type of the mask (`cpf`, `datetime`, etc...)
+  - `maskedValue` (String, required): the masked value to be converted in raw value
+  - `settings` (Object, optional): if the mask type accepts options, pass it in the settings parameter
+- static isValid(type, value, settings): validate if the mask and the value match.
+  - `type` (String, required): the type of the mask (`cpf`, `datetime`, etc...)
+  - `value` (String, required): the value to be masked
+  - `settings` (Object, optional): if the mask type accepts options, pass it in the settings parameter
+- static getMask(type, value, settings): get the mask used to mask the value
+
+Ex:
+
+````jsx
+import { MaskService } from 'react-native-masked-text'
+
+var money = MaskService.toMask('money', '123', {
+    unit: 'US$',
+    separator: '.',
+    delimiter: ','
+})
+
+## `Form example`
+
+[see more](/src/examples/SignUp/index.js)
 
 ```jsx
-<Form4u
-  formFieldsRows={fields}
-  handleSubmit={handleSubmit}
-  validation={validationRules}
-  submitOnDirty
-/>
-```
+import Form4u from "react-native-form4u";
+import fields from "./formFields.js";
+import validationRules from "./formValidationRules.js";
+
+const App = () => {
+  return (
+    <Form4u
+      formFieldsRows={fields}
+      handleSubmit={handleSubmit}
+      validation={validationRules}
+      submitOnDirty
+    />
+  );
+};
+
+export default App;
+````
 
 ---
 
-## BACKLOG
+## `BACKLOG`
 
-- refactor to use styled components
 - Implement other field types
 - Tests
 - Documentation!!!
 
 ---
 
-## Version History
+## `Version History`
 
-### 0.0.1
+<details><summary>0.0.1</summary>
 
 - remove styled-component from Input from native-base, onChange and onChangeText were not been called
   [see more](https://github.com/GeekyAnts/NativeBase/issues/2692)
@@ -294,14 +454,18 @@ const handleSubmit = fields => {
 - Allows form to render any kind of React component
 - Added react-native-maked-text to allows masked input texts
 
+</details>
+
+<br>
+
 ---
 
-## Contributing
+## `Contributing`
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
-## License
+## `License`
 
 [MIT](https://choosealicense.com/licenses/mit/)
