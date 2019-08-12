@@ -139,7 +139,11 @@ Fields are array items. You can easily define more than one field per `row`. See
 | **`fieldStyle`**   | Style object for the field              | _None_                        |
 | **`mask`**         | Custom mask for the field               | _None_                        |
 
+<<<<<<< HEAD
 <br/>
+=======
+<br>
+>>>>>>> fix docs, update dependencies
 
 ```javascript
 formFields = [
@@ -384,8 +388,11 @@ Most [style properties](http://facebook.github.io/react-native/docs/style.html) 
 
 If you want, we use the [`MaskService`](https://github.com/benhurott/react-native-masked-text/blob/master/README.md#extra-maskservice) from [`react-native-masked-text`](https://github.com/benhurott/react-native-masked-text/blob/master/README.md)
 
+<<<<<<< HEAD
 <br/>
 
+=======
+>>>>>>> fix docs, update dependencies
 ## `Form example`
 
 [see more](/src/examples/SignUp/index.js)
@@ -408,8 +415,11 @@ const App = () => {
 
 export default App;
 ```
+<<<<<<< HEAD
 
 <br/>
+=======
+>>>>>>> fix docs, update dependencies
 
 ---
 
