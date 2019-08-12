@@ -10,7 +10,7 @@ export const Container = styled.View`
 
 export const StyledItemPicker = styled(Item).attrs({ picker: true })``;
 
-export const StyledPicker = styled(Picker).attrs(props => ({
+export const StyledPicker = styled(Picker).attrs((props) => ({
   note: true,
   mode: 'dropdown',
   placeholderIconColor: props.placeholderIconColor ? props.placeholderIconColor : '#007aff',

@@ -86,7 +86,7 @@ const Form4u = ({
   ));
 
   const renderPicker = ({
-    name, placeholder, pickerItems, pickerProps,
+    name, placeholder, pickerItems, fieldProps,
   }) => {
     const hasError = !!errors[name];
     const errorMessage = hasError ? errors[name] : ' ';
@@ -100,7 +100,7 @@ const Form4u = ({
         onValueChange={handleOnChangeValue(name)}
         error={hasError}
         errorMessage={errorMessage}
-        {...pickerProps}
+        {...fieldProps}
       />
     );
   };
@@ -150,7 +150,7 @@ const Form4u = ({
         {/* allows more than one field per row  */}
         {formFields.map((rows, i) => (
           <View style={styles.field} key={`f-${i}`}>
-            {rows.map(field => renderField(field))}
+            {rows.map((field) => renderField(field))}
           </View>
         ))}
       </Form>
