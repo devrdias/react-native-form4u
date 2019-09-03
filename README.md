@@ -97,7 +97,7 @@ react-native link native-base
 If you have icons problems, please try to install and link [`react-native-vector-icons`](https://github.com/oblador/react-native-vector-icons)
 
 ```bash
-npm install --save react-native-vector-icon
+npm install --save react-native-vector-icons
 ```
 
 ```bash
