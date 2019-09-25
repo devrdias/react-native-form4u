@@ -11,19 +11,20 @@ export const StyledInput = styled(Input).attrs(() => ({
   returnKeyType: 'next',
 }))`
   font-size: 16px;
-  height: ${props => (props.multiline ? 80 : 0)}px;
+  height: ${(props) => (props.multiline ? 80 : 0)}px;
 `;
 
 export const StyledItem = styled(Item).attrs()`
-  border-color: ${props => (props.error ? 'red' : props.borderColor)};
-  border-width: ${props => (props.borderWidth ? props.borderWidth : 1)}px;
+  border-color: ${(props) => (props.error ? 'red' : props.borderColor)};
+  border-width: ${(props) => (props.borderWidth ? props.borderWidth : 1)}px;
 `;
 
 export const Error = styled.View`
-  flex: 0;
+  flex: 1;
 `;
 
 export const ErrorMessage = styled.Text`
   color: red;
   font-size: 12px;
+  flex-direction: row;
 `;

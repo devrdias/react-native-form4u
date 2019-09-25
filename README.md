@@ -3,7 +3,7 @@
 
 [![NPM Version](https://img.shields.io/npm/v/react-native-form4u.svg?style=flat)](https://www.npmjs.com/package/react-native-form4u)
 ![Dependencies](https://img.shields.io/david/devrdias/react-native-form4u)
-![Downloads](https://img.shields.io/npm/dw/react-native-form4u)
+![Downloads](https://img.shields.io/npm/d/react-native-form4u)
 [![Issues](https://img.shields.io/github/issues/devrdias/react-native-form4u)](https://github.com/devrdias/react-native-form4u/issues)
 [![Closed issues](https://img.shields.io/github/issues-closed-raw/devrdias/react-native-form4u)](https://github.com/devrdias/react-native-form4u/issues)
 
@@ -396,7 +396,7 @@ import validationRules from "./formValidationRules.js";
 const App = () => {
   return (
     <Form4u
-      formFieldsRows={fields}
+      formFields={fields}
       handleSubmit={handleSubmit}
       validation={validationRules}
       submitOnDirty

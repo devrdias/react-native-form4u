@@ -1,7 +1,9 @@
 import { Form, View } from 'native-base';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ActivityIndicator, Keyboard, StyleSheet } from 'react-native';
+import {
+  ActivityIndicator, Keyboard, SafeAreaView, ScrollView, StyleSheet,
+} from 'react-native';
 import {
   CustomSwitch, CustomButton, CustomPicker, CustomTextInput,
 } from './FormItems';
@@ -11,7 +13,12 @@ import useForm4u from './hooks/useForm4u';
  * A component which renders a form based on a given list of fields.
  */
 const Form4u = ({
-  formFields, handleSubmit, submitOnDirty, validation, formStyle,
+  formFields,
+  handleSubmit,
+  submitOnDirty,
+  validation,
+  formStyle,
+  fieldsValues,
 }) => {
   // initialize the hook
   const {
@@ -22,7 +29,7 @@ const Form4u = ({
     handleOnSubmitForm,
     resetForm,
     isValidFormData,
-  } = useForm4u(formFields, handleSubmit, validation);
+  } = useForm4u(formFields, handleSubmit, validation, fieldsValues);
 
   /**
    * Reset the form and hide the keyboard.
@@ -77,13 +84,11 @@ const Form4u = ({
     );
   };
 
-  const renderCustomComponent = ({ children }) => (children ? (
-    <View style={styles.field} key={children.key}>
+  const renderCustomComponent = ({ children }) => (
+    <View key={children.key}>
       {children}
     </View>
-  ) : (
-    <View />
-  ));
+  );
 
   const renderPicker = ({
     name, placeholder, pickerItems, fieldProps,
@@ -124,6 +129,7 @@ const Form4u = ({
         return renderCustomComponent(field);
 
       case 'text':
+      case 'password':
       case 'email':
       case 'credit-card':
       case 'cpf':
@@ -144,17 +150,32 @@ const Form4u = ({
   };
 
   return (
-    <>
-      {isSubmitting && renderLoading()}
-      <Form autoFocus={false} style={[styles.form, { ...formStyle }]}>
-        {/* allows more than one field per row  */}
-        {formFields.map((rows, i) => (
-          <View style={styles.field} key={`f-${i}`}>
-            {rows.map((field) => renderField(field))}
-          </View>
-        ))}
-      </Form>
-    </>
+    <SafeAreaView>
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+      >
+        {isSubmitting && renderLoading()}
+        <Form autoFocus={false} style={[styles.form, { ...formStyle }]}>
+          {/* allows more than one field per row  */}
+          {formFields.map((rows, i) => (
+            <View
+              style={styles.row}
+              key={`f-${i}`}
+            >
+              {rows.map((field, j) => (
+                <View
+                  style={[styles.field, { ...field.fieldStyle }]}
+                  key={`f-${j}`}
+                >
+                  {renderField(field)}
+                </View>
+              ))}
+              {/* {rows.map((field, j) => renderField(field))} */}
+            </View>
+          ))}
+        </Form>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -173,6 +194,7 @@ Form4u.propTypes = {
           'reset',
           'customComponent',
           'text',
+          'password',
           'picker',
           'email',
           'credit-card',
@@ -193,30 +215,34 @@ Form4u.propTypes = {
   ),
   formStyle: PropTypes.object,
   validation: PropTypes.func,
+  fieldsValues: PropTypes.object,
 };
 
 Form4u.defaultProps = {
   formStyle: {},
-  submitOnDirty: false,
+  submitOnDirty: true,
   formFields: {
     label: null,
     required: false,
     fieldProps: {},
     defaultValue: null,
-    fieldStyle: {},
+    fieldStyle: { },
     mask: null,
   },
   validation: () => undefined,
+  fieldsValues: {},
 };
 
 const styles = StyleSheet.create({
   form: {
-    flex: 1,
     padding: 10,
+    flexDirection: 'column',
+  },
+  row: {
+    paddingBottom: 20,
   },
   field: {
     flexDirection: 'row',
-    paddingBottom: 15,
   },
   loading: {
     position: 'absolute',

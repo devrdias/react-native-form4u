@@ -32,8 +32,6 @@ const validate = (fields) => {
     return errors;
   });
 
-  debugger;
-
   return arrErrors.reduce((objs, o) => o, {});
 };
 

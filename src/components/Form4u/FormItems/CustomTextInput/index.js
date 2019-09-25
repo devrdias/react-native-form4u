@@ -34,6 +34,8 @@ const CustomTextInput = ({
     setBorderWidth(1);
   };
 
+  const { type } = fieldProps;
+
   return (
     <Container>
       <StyledItem
@@ -47,6 +49,9 @@ const CustomTextInput = ({
           ref={inputEl}
           style={[styles.textInput, multiline && styles.textarea]}
           blurOnSubmit
+          secureTextEntry={type === 'password'}
+          autoCapitalize={type !== 'email' ? 'none' : 'words'}
+          keyboardType={type === 'email' ? 'email-address' : 'default'}
           returnKeyType="next"
           multiline={multiline}
           onBlur={onBlur}
@@ -56,9 +61,11 @@ const CustomTextInput = ({
         {error && <Icon type="AntDesign" style={{ color: 'red' }} name="close" />}
       </StyledItem>
 
+      {errorMessage && (
       <Error>
         <ErrorMessage>{errorMessage}</ErrorMessage>
       </Error>
+      )}
     </Container>
   );
 };

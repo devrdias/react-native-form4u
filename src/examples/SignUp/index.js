@@ -1,14 +1,10 @@
-import { Container, Content, Text } from 'native-base';
 import React from 'react';
-import { Alert, SafeAreaView, StyleSheet } from 'react-native';
-import Form4u from '../../components/Form4u';
-import formFields from './SignUpFields';
-import validationRules from './SignUpFormValidationRules';
+import { Alert, StyleSheet } from 'react-native';
+import Form4u from 'react-native-form4u';
+import formFields from './testFields';
+import validationRules from './validationRules';
 
-const SignUp = () => {
-  /**
-   * Grab user's input data.
-   */
+const Test = () => {
   const handleSubmit = (state) => {
     const {
       firstName, lastName, email, subject, password,
@@ -23,38 +19,13 @@ const SignUp = () => {
   };
 
   return (
-    <Container style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <Content>
-          <Text style={styles.textStyle}>Sign Up</Text>
-          <Form4u
-            formFields={formFields}
-            handleSubmit={handleSubmit}
-            validation={validationRules}
-          />
-        </Content>
-      </SafeAreaView>
-    </Container>
+    <Form4u
+      formFields={formFields}
+      handleSubmit={handleSubmit}
+      validation={validationRules}
+      submitOnDirty
+    />
   );
 };
 
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    // backgroundColor: '#3F4EA5'
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    padding: 10,
-    // backgroundColor: '#3F4EA5'
-  },
-  textStyle: {
-    fontSize: 35,
-    textAlign: 'center',
-    margin: 10,
-    // color: '#FFF'
-  },
-});
-
-export default SignUp;
+export default Test;

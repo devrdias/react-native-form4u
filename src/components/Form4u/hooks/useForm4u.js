@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { MaskService } from 'react-native-masked-text';
 import defaultValidation from '../FormItems/defaultValidations';
 
-const useCustomForm = (formFields, callback, validate) => {
-  const formInitialState = getInitialFormState();
+const useCustomForm = (formFields, callback, validate, fieldsValues) => {
+  const formInitialState = getInitialFormState(fieldsValues);
 
   const [fields, setFields] = useState({ ...formInitialState });
   const [isValidFormData, setIsValidFormData] = useState();
@@ -20,7 +20,7 @@ const useCustomForm = (formFields, callback, validate) => {
     const filteredFields = getFormFields().filter(({ type }) => !skipFieldType.includes(type));
 
     // check if all remaining fields have been filled out
-    const isFilled = filteredFields.every(field => !!fields[field.name].value);
+    const isFilled = filteredFields.every((field) => !!fields[field.name].value);
     setIsValidFormData(isFilled);
 
     /**
@@ -74,7 +74,7 @@ const useCustomForm = (formFields, callback, validate) => {
    */
   function getFormFields() {
     const auxFields = [];
-    formFields.map(row => auxFields.push(...row));
+    formFields.map((row) => auxFields.push(...row));
     return auxFields;
   }
 
@@ -82,9 +82,11 @@ const useCustomForm = (formFields, callback, validate) => {
    * dynamically construct initial state by using
    * each form field's name as an object property.
    */
-  function getInitialFormState() {
+  function getInitialFormState(fieldsValues) {
     const formFieldNames = getFormFields().reduce((obj, field) => {
-      const value = getFormFieldDefaultValue(field);
+      const value = fieldsValues[field.name]
+        ? fieldsValues[field.name]
+        : getFormFieldDefaultValue(field);
       const fld = { ...obj };
       fld[field.name] = { value };
       return fld;
@@ -104,10 +106,10 @@ const useCustomForm = (formFields, callback, validate) => {
   /**
    * Handle callback onChangeValue from inputs and other components
    */
-  const handleOnChangeValue = fieldName => (text) => {
+  const handleOnChangeValue = (fieldName) => (text) => {
     // check if field needs to be masked
     const toMask = getFormFields()
-      .filter(f => f.name === fieldName)
+      .filter((f) => f.name === fieldName)
       .reduce(
         (obj, item) => ({
           maskType: getDefaultMaskType(item.type),
@@ -146,7 +148,6 @@ const useCustomForm = (formFields, callback, validate) => {
     setIsSubmitting(true); // prevents the form from submitting on render
     const defaultErrors = defaultValidation(getFormFields());
     const customErrors = validate(fields);
-    debugger;
     const returnedErrors = { ...defaultErrors, ...customErrors };
     setErrors(returnedErrors);
   };

@@ -6,16 +6,6 @@ const formFields = [
       name: 'firstName',
       label: 'First Name',
       type: 'text',
-      required: true,
-      fieldProps: {
-        autoCorrect: false,
-      },
-    },
-    {
-      name: 'lastName',
-      label: 'Last Name',
-      required: true,
-      type: 'text',
       fieldProps: {
         autoCorrect: false,
       },
@@ -23,9 +13,17 @@ const formFields = [
   ],
   [
     {
+      name: 'cpf',
+      label: 'CPF',
+      type: 'cpf',
+    },
+  ],
+
+  [
+    {
       name: 'email',
       label: 'Email',
-      type: 'text',
+      type: 'email',
       fieldProps: {
         autoCorrect: false,
         autoCapitalize: 'none',
@@ -64,16 +62,13 @@ const formFields = [
       name: 'signUpButton',
       label: 'Sign Up',
       type: 'button',
-      fieldProps: {
-        submitOnDirty: true,
-      },
     },
   ],
   [
     {
       name: 'resetButton',
       label: 'Reset',
-      type: 'button',
+      type: 'reset',
     },
   ],
 ];
