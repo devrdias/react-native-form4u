@@ -12,7 +12,7 @@
 ## A React Native form builder, simple, light and fast !
 
 - Define [fields](/src/examples/SignUp/SignUpFields.js) using a simple json file. Any kind of react-native field or valid component is accepted;
-- Define [field validation](/src/examples/SignUp/SignUpFormValidationRules.js) with the flexibility of using a JavaScript function to return the erros;
+- Define [field validation](/src/examples/SignUp/SignUpFormValidationRules.js) with the flexibility of using a JavaScript function to return the errors;
 - Define your own [callback](/src/examples/SignUp/index.js) function to handle form submission;
 - Package comes with a full Sign Up login screen example.
 
