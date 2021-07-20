@@ -62,7 +62,7 @@
     "metro-react-native-babel-preset": "0.56.0",
     "native-base": "^2.13.4",
     "react": "16.9.0",
-    "react-native": "^0.60.4",
+    "react-native": "^0.62.3",
     "react-native-vector-icons": "^6.6.0",
     "react-test-renderer": "16.9.0"
   },
